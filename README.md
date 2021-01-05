@@ -1,24 +1,24 @@
-# parfumerie
+# :cherry_blossom: parfumerie :cherry_blossom:
 Fonctionne de paire avec [Parfumerie-api](https://github.com/Orghaniian/parfumerie-api)
-## Project setup
+## :tulip: Project setup :tulip:
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### :sunflower: Compiles and hot-reloads for development :sunflower:
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### :hibiscus: Compiles and minifies for production :hibiscus:
 ```
 yarn build
 ```
 
-### Lints and fixes files
+### :blossom: Lints and fixes files :blossom:
 ```
 yarn lint
 ```
 
-### Customize configuration
+### :rose: Customize configuration :rose:
 See [Configuration Reference](https://cli.vuejs.org/config/).

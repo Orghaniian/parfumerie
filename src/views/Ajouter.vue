@@ -6,7 +6,7 @@
     </div>
     <div>
       <label for="quantite">Quantité</label>
-      <input type="number" name="quantite" id="quantite" v-model="form.quantite" required/>
+      <input type="number" name="quantite" id="quantite" v-model="form.quantite_en_stock" required/>
     </div>
     <div>
       <label for="prix">Prix</label>
@@ -18,7 +18,7 @@
     </div>
     <div>
       <label for="cadeau">En cadeau</label>
-      <input type="checkbox" name="cadeau" id="cadeau" v-model="form.cadeau"/>
+      <input type="checkbox" name="cadeau" id="cadeau" v-model="form.en_cadeau"/>
     </div>
     <div>
       <label for="echangeable">Échangeable</label>
@@ -36,10 +36,10 @@ export default {
   setup() {
     const form = ref({
         nom: "",
-        quantite: 0,
+        quantite_en_stock: 0,
         prix_unitaire: 0,
         disponible: false,
-        cadeau: false,
+        en_cadeau: false,
         echangeable: false
     })
 
@@ -59,10 +59,10 @@ export default {
 
         form.value = {
             nom: "",
-            quantite: 0,
+            quantite_en_stock: 0,
             prix_unitaire: 0,
             disponible: false,
-            cadeau: false,
+            en_cadeau: false,
             echangeable: false
         }
     };

@@ -15,8 +15,8 @@ export default {
     // console.log(db);
 
     onMounted(() => {
-      fetch("http://localhost:4040/articles").then((reponse) => {
-        reponse.json().then((data) => (articles.value = data.data));
+      fetch("http://localhost:4040/articles").then((response) => {
+        response.json().then((data) => (articles.value = data.data));
       });
     });
 
