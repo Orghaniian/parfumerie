@@ -1,5 +1,5 @@
 # parfumerie
-Fonctionne de paire avec [Parfumerie-api](https://github.com/user/repo/blob/branch/other_file.md)
+Fonctionne de paire avec [Parfumerie-api](https://github.com/Orghaniian/parfumerie-api)
 ## Project setup
 ```
 yarn install
