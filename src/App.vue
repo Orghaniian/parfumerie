@@ -1,10 +1,14 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <Menu />
+  <router-view />
 </template>
+
+<script>
+import Menu from "@/components/Menu";
+export default {
+  components: { Menu },
+};
+</script>
 
 <style lang="scss">
 #app {
