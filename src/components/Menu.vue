@@ -6,7 +6,7 @@
       <h1>Lalavande Fidelité</h1>
     </div>
 
-    <router-link to="/">Ajouter</router-link>
+    <router-link :to="{ name: 'Ajouter' }">Ajouter</router-link>
     <router-link to="/">Clients</router-link>
     <router-link to="/">Options</router-link>
   </nav>

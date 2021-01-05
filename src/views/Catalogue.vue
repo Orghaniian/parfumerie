@@ -1,16 +1,24 @@
-<template>Catalogue {{ articles.values }}</template>
+<template>
+  Catalogue
+  <div v-for="article in articles" :key="article.id">
+    <pre>{{ article }}</pre>
+  </div>
+</template>
 
 <script>
-import { ref } from "vue";
-import fectchArticles from "../utils/fetchArticles";
-// import connectDb from "../utils/connectDb";
+import { onMounted, ref } from "vue";
 export default {
+  name: "Catalogue",
   setup() {
-    const articles = ref([]);
+    const articles = ref([{ test: "test" }]);
     // const db = connectDb;
     // console.log(db);
 
-    fectchArticles();
+    onMounted(() => {
+      fetch("http://localhost:4040/articles").then((reponse) => {
+        reponse.json().then((data) => (articles.value = data.data));
+      });
+    });
 
     return { articles };
   },
