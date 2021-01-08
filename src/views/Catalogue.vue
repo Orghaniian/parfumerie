@@ -3,6 +3,7 @@
   <div v-for="article in articles" :key="article.id">
     <pre>{{ article }}</pre>
   </div>
+  <input type="number" v-model="limit" />
 </template>
 
 <script>
@@ -10,7 +11,7 @@ import { onMounted, ref } from "vue";
 export default {
   name: "Catalogue",
   setup() {
-    const articles = ref([{ test: "test" }]);
+    const articles = ref([]);
     // const db = connectDb;
     // console.log(db);
 
