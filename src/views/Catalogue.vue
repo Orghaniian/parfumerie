@@ -1,10 +1,11 @@
 <template>
   <h2>Catalogue</h2>
-  <label>Rechercher: </label>
+  <label >Rechercher: </label>
   <input type="text" v-model="nom" @input="test" />
   <p>Resultat(s) pour: {{ nom }}</p>
   <div v-for="article in articles" :key="article.id">
     <pre>{{ article }}</pre>
+    <router-link :to="{ name: 'Article', params: { no: article.No_article } } ">Voir</router-link>
   </div>
 </template>
 
