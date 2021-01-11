@@ -42,7 +42,7 @@ export default {
           }).then((data) => {
             console.log(data)
             if(!error.value){
-              localStorage.setItem("token", data.data)
+              console.log("connecté!")
             }
           })
 
