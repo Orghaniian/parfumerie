@@ -4,8 +4,12 @@ import Catalogue from "../views/Catalogue.vue";
 import Ajouter from "../views/Ajouter.vue";
 import Inscrire from "../views/Inscrire.vue";
 import Article from "@/views/Article";
+<<<<<<< HEAD
 import Clients from "../views/Clients.vue";
 import Client from "../views/Client.vue";
+=======
+import Connexion from "@/views/Connexion";
+>>>>>>> 0eaec021cc4f5ee60073e01227a96fa2b3080983
 
 const routes = [
   {
@@ -44,6 +48,11 @@ const routes = [
     name: "Article",
     component: Article,
     props: true
+  },
+  {
+    path: "/connexion",
+    name: "Connexion",
+    component: Connexion
   }
 ]
 
