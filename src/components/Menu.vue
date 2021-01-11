@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar">
     <ul>
-      <li class="gauche"><router-link to="/">Quitter</router-link></li>
+      <li class="gauche"><span @click="logout" v-if="logged">Quitter</span><router-link :to="{ name: 'Connexion' }" v-else>Connexion</router-link></li>
       <li class="gauche"><router-link to="/">Accueil</router-link></li>
       <li>
         <div class="titre">
@@ -19,6 +19,24 @@
     </ul>
   </nav>
 </template>
+
+<script>
+import { useRouter } from "vue-router"
+export default {
+  props: {
+    logged : Boolean
+  },
+  setup (props, context) {
+    const router = useRouter()
+    const logout = function (){
+      context.emit("logout")
+      router.push("/")
+    }
+
+    return { logout }
+  }
+};
+</script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Rouge+Script");

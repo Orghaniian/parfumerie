@@ -13,7 +13,7 @@
 import {  ref } from "vue";
 export default {
   name: "Connexion",
-  setup () {
+  setup (props, context) {
     // refs
     const login = ref("")
     const password = ref("")
@@ -42,6 +42,7 @@ export default {
         console.log(data)
         if(!error.value ){
           console.log("connecté!")
+          context.emit("login", data.data)
         }
       })
 
