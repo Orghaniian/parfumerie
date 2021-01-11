@@ -1,9 +1,15 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Accueil from '../views/Accueil.vue'
-import Catalogue from "../views/Catalogue.vue"
-import Ajouter from "../views/Ajouter.vue"
+import { createRouter, createWebHistory } from 'vue-router';
+import Accueil from '../views/Accueil.vue';
+import Catalogue from "../views/Catalogue.vue";
+import Ajouter from "../views/Ajouter.vue";
+import Inscrire from "../views/Inscrire.vue";
 import Article from "@/views/Article";
+<<<<<<< HEAD
+import Clients from "../views/Clients.vue";
+import Client from "../views/Client.vue";
+=======
 import Connexion from "@/views/Connexion";
+>>>>>>> 0eaec021cc4f5ee60073e01227a96fa2b3080983
 
 const routes = [
   {
@@ -17,9 +23,25 @@ const routes = [
     component: Catalogue
   },
   {
+    path: "/clients",
+    name: "Clients",
+    component: Clients
+  },
+  {
+    path: "/client/:id",
+    name: "Client",
+    component: Client,
+    props: true
+  },
+  {
     path: "/ajouter",
     name: "Ajouter",
     component: Ajouter
+  },
+  {
+    path: "/inscrire",
+    name: "Inscrire",
+    component: Inscrire
   },
   {
     path: "/article/:no",
