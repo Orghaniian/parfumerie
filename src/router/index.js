@@ -7,6 +7,32 @@ import Article from "@/views/Article";
 import Clients from "../views/Clients.vue";
 import Client from "../views/Client.vue";
 import Connexion from "@/views/Connexion";
+import isConnected from "@/utils/isConnected";
+import isAdmin from "@/utils/isAdmin";
+
+const requireAdmin = (to, from, next) => {
+  if(!isAdmin())
+    if(!isConnected())
+      next({ name: "Connexion" })
+    else
+      next({ name: "Accueil" })
+  else
+    next()
+}
+
+const requireAuth = (to, from, next) => {
+  if (!isConnected())
+    next({ name: "Connexion" })
+  else
+    next()
+}
+
+const requireNoAuth = (to, from, next) => {
+  if (isConnected())
+    next({ name: "Accueil" })
+  else
+    next()
+}
 
 const routes = [
   {
@@ -17,39 +43,46 @@ const routes = [
   {
     path: "/catalogue",
     name: "Catalogue",
-    component: Catalogue
+    component: Catalogue,
+    beforeEnter: requireAuth
   },
   {
     path: "/clients",
     name: "Clients",
-    component: Clients
+    component: Clients,
+    beforeEnter: requireAdmin
   },
   {
     path: "/client/:id",
     name: "Client",
     component: Client,
-    props: true
+    props: true,
+    beforeEnter: requireAdmin
   },
   {
     path: "/ajouter",
     name: "Ajouter",
-    component: Ajouter
+    component: Ajouter,
+    beforeEnter: requireAdmin
   },
   {
     path: "/inscrire",
     name: "Inscrire",
-    component: Inscrire
+    component: Inscrire,
+    beforeEnter: requireAdmin
   },
   {
     path: "/article/:no",
     name: "Article",
     component: Article,
-    props: true
+    props: true,
+    beforeEnter: requireAuth
   },
   {
     path: "/connexion",
     name: "Connexion",
-    component: Connexion
+    component: Connexion,
+    beforeEnter: requireNoAuth
   }
 ]
 

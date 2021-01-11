@@ -11,6 +11,7 @@
 
 <script>
 import {  ref } from "vue";
+import { useRouter} from "vue-router"
 export default {
   name: "Connexion",
   setup (props, context) {
@@ -18,6 +19,8 @@ export default {
     const login = ref("")
     const password = ref("")
     const error = ref(null)
+
+    const router = useRouter()
 
     const handleSubmit = () => {
       error.value = null
@@ -42,7 +45,12 @@ export default {
         console.log(data)
         if(!error.value ){
           console.log("connecté!")
-          context.emit("login", data.data)
+          context.emit("login", {
+            Identifiant : data.data.Identifiant,
+            Admin: data.data.Admin === 1,
+            CodeClient: data.data.Code_Client
+          })
+          router.push("/")
         }
       })
 

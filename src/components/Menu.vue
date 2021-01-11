@@ -9,6 +9,9 @@
         </div>
       </li>
       <li class="droite">
+        <router-link :to="{ name: 'Catalogue' }">Catalogue</router-link>
+      </li>
+      <li class="droite">
         <router-link :to="{ name: 'Ajouter' }">Ajouter</router-link>
       </li>
       <li class="droite"><router-link :to="{ name: 'Clients' }">Clients</router-link></li>
