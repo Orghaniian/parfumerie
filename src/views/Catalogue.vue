@@ -1,7 +1,7 @@
 <template>
   <h2>Catalogue</h2>
-  <label >Rechercher: </label>
-  <input type="text" v-model="nom" @input="test" />
+  <label>Rechercher: </label>
+  <input type="text" v-model="nom" @input="load" />
   <p>Resultat(s) pour: {{ nom }}</p>
   <div v-for="article in articles" :key="article.id">
     <pre>{{ article }}</pre>
@@ -25,15 +25,11 @@ export default {
       });
     };
 
-    const test = function () {
-      load();
-    };
-
     onMounted(() => {
       load();
     });
 
-    return { articles, nom, test };
+    return { articles, nom, load };
   },
 };
 </script>
