@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import {  ref } from "vue";
+import {  ref, computed } from "vue";
+import store from "@/store"
 export default {
   name: "Connexion",
   setup () {
@@ -19,35 +20,15 @@ export default {
     const password = ref("")
     const error = ref(null)
 
+    //vuex
+    const utilisateur = computed(() => store.getters.utilisateur)
+    console.log("store",  utilisateur.value ? utilisateur.value : utilisateur)
+
     const handleSubmit = () => {
       error.value = null
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      const options = {
-        method: "POST",
-        body: JSON.stringify({
-          "Identifiant" : login.value,
-          "Mot_De_Passe" : password.value
-        }),
-        headers: myHeaders
-      }
-
-      fetch("http://localhost:4040/authentification", options)
-          .then((reponse) => {
-            if(!reponse.ok){
-              error.value = "Identifiants incorrects"
-            }
-            return reponse.json()
-          }).then((data) => {
-        console.log(data)
-        if(!error.value ){
-          console.log("connecté!")
-        }
-      })
-
-
+      store.dispatch('connexion', { login: login.value, password: password.value })
     }
-    return { handleSubmit, password, login, error }
+    return { handleSubmit, password, login, error, utilisateur }
   }
 }
 </script>
