@@ -3,6 +3,7 @@ import Accueil from '../views/Accueil.vue'
 import Catalogue from "../views/Catalogue.vue"
 import Ajouter from "../views/Ajouter.vue"
 import Article from "@/views/Article";
+import Connexion from "@/views/Connexion";
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     name: "Article",
     component: Article,
     props: true
+  },
+  {
+    path: "/connexion",
+    name: "Connexion",
+    component: Connexion
   }
 ]
 
