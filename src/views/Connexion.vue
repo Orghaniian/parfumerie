@@ -18,7 +18,6 @@ export default {
     const login = ref("")
     const password = ref("")
     const error = ref(null)
-    console.log("token: ", localStorage.getItem("token"))
 
     const handleSubmit = () => {
       error.value = null
@@ -40,11 +39,12 @@ export default {
             }
             return reponse.json()
           }).then((data) => {
-            console.log(data)
-            if(!error.value){
-              console.log("connecté!")
-            }
-          })
+        console.log(data)
+        if(!error.value ){
+          console.log("connecté!")
+        }
+      })
+
 
     }
     return { handleSubmit, password, login, error }
