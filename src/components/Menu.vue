@@ -11,7 +11,10 @@
       <li class="droite">
         <router-link :to="{ name: 'Ajouter' }">Ajouter</router-link>
       </li>
-      <li class="droite"><router-link to="/">Clients</router-link></li>
+      <li class="droite"><router-link :to="{ name: 'Clients' }">Clients</router-link></li>
+      <li class="droite">
+        <router-link :to="{ name: 'Inscrire' }">Inscrire</router-link>
+      </li>
       <li class="droite"><router-link to="/">Options</router-link></li>
     </ul>
   </nav>

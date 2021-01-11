@@ -1,7 +1,7 @@
 # TODO
     -Admin
-        * Créer/modifier fiche client
-        * Consulter liste des clients/ une fiche client par nom/identifiant
+        * Créer/modifier fiche client (mayou) // Creer done
+        * Consulter liste des clients/ une fiche client par nom/identifiant (Mayou) // DONE
         * gestion des commandes
         * génerer facture
         * exporter la liste des commandes dans un fichier excel
