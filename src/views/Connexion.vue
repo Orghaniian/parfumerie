@@ -15,6 +15,7 @@ import { useRouter} from "vue-router"
 export default {
   name: "Connexion",
   setup (props, context) {
+    document.title = `Connexion`
     // refs
     const login = ref("")
     const password = ref("")

@@ -11,6 +11,7 @@ import useCart from "@/utils/useCart";
 export default {
   name: "Panier",
   setup () {
+    document.title = `Panier`
     const { panier, setCart } = useCart()
 
     const removeFromCart = function (index){

@@ -1,5 +1,4 @@
 <template>
-  <h2>Catalogue</h2>
   <label>Rechercher: </label>
   <input type="text" v-model="nom" @input="load" />
   <p>Resultat(s) pour: {{ nom }}</p>

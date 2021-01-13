@@ -14,6 +14,7 @@ import { onMounted, ref } from "vue";
 export default {
   name: "Clients",
   setup() {
+    document.title = `Clients`
     const clients = ref([]);
     const nom = ref("");
 

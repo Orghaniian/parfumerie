@@ -9,6 +9,8 @@
 <script>
 export default {
   name: "Accueil",
-  setup() {},
+  setup() {
+    document.title = `Lalavande`
+  },
 };
 </script>

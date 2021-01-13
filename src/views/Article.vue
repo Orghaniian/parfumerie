@@ -15,11 +15,15 @@ export default {
   name: "Article",
   props: ["no"],
   setup (props) {
+    document.title = `Article`
     const article = ref(null)
 
     onMounted(() => {
       fetch("http://localhost:4040/article/" + props.no).then((response) => {
-        response.json().then((data) => article.value = data.data);
+        response.json().then((data) => {
+          article.value = data.data
+          document.title = `Article - ${article.value.Nom}`
+        });
       })
     })
 

@@ -34,6 +34,7 @@ import { ref } from "vue";
 export default {
   name: "Ajouter",
   setup() {
+    document.title = `Ajouter`
     const form = ref({
         nom: "",
         quantite_en_stock: 0,

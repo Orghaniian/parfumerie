@@ -30,6 +30,7 @@ import { ref } from "vue";
 export default {
   name: "Inscrire",
   setup() {
+    document.title = `Inscrire`
     const form = ref({
         nom: "",
         facebook: "",

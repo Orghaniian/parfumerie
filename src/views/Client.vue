@@ -20,13 +20,17 @@ export default {
   name: "Client",
   props: ["id"],
   setup (props) {
+    document.title = `Client`
     const client = ref(null)
 
     const modif = ref (false)
 
     onMounted(() => {
       fetch("http://localhost:4040/client/" + props.id).then((response) => {
-        response.json().then((data) => (client.value = data.data));
+        response.json().then((data) => {
+          client.value = data.data
+          document.title = `Client - ${client.value.Nom}`
+        });
       })
     })
 
