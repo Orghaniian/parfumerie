@@ -11,7 +11,7 @@
     </select>
   </form>
 
-  <p>Resultat(s) pour: {{ nom }}</p>
+  <p>{{ clients.length }} Resultat(s) pour: {{ nom }}</p>
   <div class="card-container">
     <div v-for="client in clients" :key="client.Code_client">
       <ClientItem :client="client"/>
