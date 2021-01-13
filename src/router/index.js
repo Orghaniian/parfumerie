@@ -9,6 +9,8 @@ import Client from "../views/Client.vue";
 import Connexion from "@/views/Connexion";
 import isConnected from "@/utils/isConnected";
 import isAdmin from "@/utils/isAdmin";
+import Profil from "@/views/Profil";
+import Panier from "@/views/Panier";
 
 const requireAdmin = (to, from, next) => {
   if(!isAdmin())
@@ -79,10 +81,22 @@ const routes = [
     beforeEnter: requireAuth
   },
   {
+    path: "/profil",
+    name: "Profil",
+    component: Profil,
+    beforeEnter: requireAuth
+  },
+  {
     path: "/connexion",
     name: "Connexion",
     component: Connexion,
     beforeEnter: requireNoAuth
+  },
+  {
+    path: "/panier",
+    name: "Panier",
+    component: Panier,
+    beforeEnter: requireAuth
   }
 ]
 
