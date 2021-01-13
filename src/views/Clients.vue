@@ -2,17 +2,22 @@
   <h2>Clients</h2>
   <label >Rechercher: </label>
   <input type="text" v-model="nom" @input="test" />
+
   <p>Resultat(s) pour: {{ nom }}</p>
-  <div v-for="client in clients" :key="client.Code_client">
-    <pre>{{ client }}</pre>
-    <router-link :to="{ name: 'Client', params: { id: client.Code_client } } ">Voir</router-link>
+  <div class="card-container">
+    <div v-for="client in clients" :key="client.Code_client">
+      <ClientItem :client="client"/>
+    </div>
   </div>
+
 </template>
 
 <script>
 import { onMounted, ref } from "vue";
+import ClientItem from "@/components/ClientItem";
 export default {
   name: "Clients",
+  components: {ClientItem},
   setup() {
     document.title = `Clients`
     const clients = ref([]);
@@ -40,5 +45,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.clients{
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 </style>
