@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <slot name="img"/>
+    <img :src="imgSrc" >
     <div class="content">
       <slot/>
     </div>
@@ -9,7 +9,10 @@
 
 <script>
 export default {
-name: "Card"
+name: "Card",
+  props: {
+  imgSrc: String
+  }
 }
 </script>
 
