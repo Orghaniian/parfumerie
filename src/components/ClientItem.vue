@@ -4,7 +4,7 @@
       <h3>{{ client.Nom }}</h3>
       <p>Membership: {{ client.Categorie_membership_No_membership }}</p>
       <p>{{ client.Points }} points</p>
-      <router-link :to="{ name: 'Client', params: { id: client.Code_client } } ">Voir plus</router-link>
+      <router-link class="btn" style="text-align: center" :to="{ name: 'Client', params: { id: client.Code_client } } ">Voir plus</router-link>
     </div>
   </Card>
 

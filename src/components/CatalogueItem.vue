@@ -5,7 +5,7 @@
           <h3>{{ article.Nom }}</h3>
           <p>{{ article.Prix_unitaire }} Points</p>
         </div>
-        <router-link :to="{ name: 'Article', params: { no: article.No_article } } "><span>Consulter</span></router-link>
+        <router-link class="btn" :to="{ name: 'Article', params: { no: article.No_article } } "><span>Consulter</span></router-link>
       </div>
   </Card>
 </template>
@@ -49,18 +49,6 @@ export default {
         left: 4%;
         background-color: black;
       }
-    }
-
-    a{
-      width: 90px;
-      height: 23px;
-      padding: 4px 10px;
-      background: #FFFFFF;
-      border: 2px solid #483D8B;
-      border-radius: 20px;
-      text-decoration: none;
-      line-height: 23px; // centre verticalement
-      justify-self: center;
     }
   img{
     width: 160px;
