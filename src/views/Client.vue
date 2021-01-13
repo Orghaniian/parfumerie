@@ -1,7 +1,16 @@
 <template>
   Client: {{ no }}
-  <p v-if="client">{{ client }}</p>
-  <p v-else>Chargement...</p>
+  <div v-if="!modif">
+    <p v-if="client">{{ client }}</p>
+    <p v-else>Chargement...</p>
+    <button @click="modif = !modif">Modifier</button>
+  </div>
+  <div v-else>
+    <!-- TODO -->
+    <form action="">
+      inputs etc
+    </form>
+  </div>
 </template>
 
 <script>
@@ -13,13 +22,15 @@ export default {
   setup (props) {
     const client = ref(null)
 
+    const modif = ref (false)
+
     onMounted(() => {
       fetch("http://localhost:4040/client/" + props.id).then((response) => {
         response.json().then((data) => (client.value = data.data));
       })
     })
 
-    return { client }
+    return { client, modif }
   }
 }
 </script>
