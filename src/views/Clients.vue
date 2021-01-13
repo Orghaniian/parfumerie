@@ -1,17 +1,11 @@
 <template>
-  <form onsubmit.prevent>
-    <label>Rechercher: </label>
-    <input type="text" v-model="nom" @input="load" />
-    <label for="orderBy">Trier par</label>
-    <select id="orderBy" v-model="tri" @change="load">
-      <option value="">aucun tri</option>
-      <option value="asc">points croissants</option>
-      <option value="desc">points décroissant</option>
-      <option value="nom">nom</option>
-    </select>
-  </form>
+  <SearchBar @load="load" :select-options="{
+    asc: 'points croissant',
+    desc: 'points décroissant',
+    nom: 'nom'
+  }"/>
 
-  <p>{{ clients.length }} Resultat(s) pour: {{ nom }}</p>
+  <p>{{ clients.length }} Resultat(s) pour: {{ nomRef }}</p>
   <div class="card-container">
     <div v-for="client in clients" :key="client.Code_client">
       <ClientItem :client="client"/>
@@ -23,19 +17,21 @@
 <script>
 import { onMounted, ref } from "vue";
 import ClientItem from "@/components/ClientItem";
+import SearchBar from "@/components/SearchBar";
 export default {
   name: "Clients",
-  components: {ClientItem},
+  components: {SearchBar, ClientItem},
   setup() {
     document.title = `Clients`
     const clients = ref([]);
-    const nom = ref("");
-    const tri = ref("");
+    const nomRef = ref("")
 
-    const load = function () {
+    const load = function (e = {}) {
+      const { tri, nom } = e
+      nomRef.value = nom
       let query = "http://localhost:4040/clients";
-      if (nom.value) query += `?nom=${nom.value}`;
-      if (tri.value !== "" ) query += `?orderBy=${tri.value}`
+      if (nom && nom !== "" ) query += `?nom=${nom}`;
+      if (tri && tri !== "" ) query += `?orderBy=${tri}`
       fetch(query).then((response) => {
         response.json().then((data) => {
             clients.value = data.data});
@@ -46,7 +42,7 @@ export default {
       load();
     });
 
-    return { clients, nom, load, tri };
+    return { clients, load, nomRef };
   },
 };
 </script>
