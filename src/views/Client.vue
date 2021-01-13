@@ -2,6 +2,8 @@
   Client: {{ no }}
   <p v-if="client">{{ client }}</p>
   <p v-else>Chargement...</p>
+
+  <router-link :to="{ name: 'ModifierClient' }">Modifier</router-link>
 </template>
 
 <script>
