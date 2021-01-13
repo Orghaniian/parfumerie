@@ -107,8 +107,8 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Rouge+Script");
 
 .navbar {
-  padding: 30px;
-  margin: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
 
   .btn {
     background-color: #483D8B;
@@ -118,6 +118,7 @@ export default {
     align-items: center;
     justify-content: center;
     border-radius: 66px;
+    margin-right: 15px;
   }
 
   ul {
@@ -161,7 +162,7 @@ export default {
       font-weight: 400;
       color: #483d8b;
       margin: 0;
-      padding: 16px 80px;
+      padding: 12px 50px;
     }
   }
 }
