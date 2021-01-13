@@ -12,7 +12,7 @@
   </form>
 
   <p>{{ articles.length }} Resultat(s) pour: {{ nom }}</p>
-  <div class="articles">
+  <div class="card-container">
     <div v-for="article in articles" :key="article.id">
       <CatalogueItem :article="article"/>
     </div>
@@ -47,12 +47,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.articles{
-  display: flex;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-</style>
