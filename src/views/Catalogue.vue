@@ -3,16 +3,19 @@
   <label>Rechercher: </label>
   <input type="text" v-model="nom" @input="load" />
   <p>Resultat(s) pour: {{ nom }}</p>
-  <div v-for="article in articles" :key="article.id">
-    <pre>{{ article }}</pre>
-    <router-link :to="{ name: 'Article', params: { no: article.No_article } } ">Voir</router-link>
+  <div class="articles">
+    <div v-for="article in articles" :key="article.id">
+      <CatalogueItem :article="article"/>
+    </div>
   </div>
 </template>
 
 <script>
 import { onMounted, ref } from "vue";
+import CatalogueItem from "@/components/CatalogueItem";
 export default {
   name: "Catalogue",
+  components: {CatalogueItem},
   setup() {
     const articles = ref([]);
     const nom = ref("");
@@ -34,5 +37,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.articles{
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 </style>
