@@ -1,6 +1,16 @@
 <template>
-  <label>Rechercher: </label>
-  <input type="text" v-model="nom" @input="load" />
+  <form onsubmit.prevent>
+    <label>Rechercher: </label>
+    <input type="text" v-model="nom" @input="load" />
+    <label for="orderBy">Trier par</label>
+    <select id="orderBy" v-model="tri" @change="load">
+      <option value="">aucun tri</option>
+      <option value="asc">prix croissant</option>
+      <option value="desc">prix décroissant</option>
+      <option value="nom">nom</option>
+    </select>
+  </form>
+
   <p>Resultat(s) pour: {{ nom }}</p>
   <div class="articles">
     <div v-for="article in articles" :key="article.id">
@@ -18,10 +28,13 @@ export default {
   setup() {
     const articles = ref([]);
     const nom = ref("");
+    const tri = ref("");
 
     const load = function () {
       let query = "http://localhost:4040/articles";
       if (nom.value) query += `?nom=${nom.value}`;
+      if (tri.value !== "" ) query += `?orderBy=${tri.value}`
+      console.log("load", query)
       fetch(query).then((response) => {
         response.json().then((data) => (articles.value = data.data));
       });
@@ -31,7 +44,7 @@ export default {
       load();
     });
 
-    return { articles, nom, load };
+    return { articles, nom, load, tri };
   },
 };
 </script>
