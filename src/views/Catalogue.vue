@@ -11,7 +11,7 @@
     </select>
   </form>
 
-  <p>Resultat(s) pour: {{ nom }}</p>
+  <p>{{ articles.length }} Resultat(s) pour: {{ nom }}</p>
   <div class="articles">
     <div v-for="article in articles" :key="article.id">
       <CatalogueItem :article="article"/>
@@ -34,7 +34,6 @@ export default {
       let query = "http://localhost:4040/articles";
       if (nom.value) query += `?nom=${nom.value}`;
       if (tri.value !== "" ) query += `?orderBy=${tri.value}`
-      console.log("load", query)
       fetch(query).then((response) => {
         response.json().then((data) => (articles.value = data.data));
       });
