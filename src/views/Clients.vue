@@ -1,7 +1,15 @@
 <template>
-  <h2>Clients</h2>
-  <label >Rechercher: </label>
-  <input type="text" v-model="nom" @input="test" />
+  <form onsubmit.prevent>
+    <label>Rechercher: </label>
+    <input type="text" v-model="nom" @input="load" />
+    <label for="orderBy">Trier par</label>
+    <select id="orderBy" v-model="tri" @change="load">
+      <option value="">aucun tri</option>
+      <option value="asc">points croissants</option>
+      <option value="desc">points décroissant</option>
+      <option value="nom">nom</option>
+    </select>
+  </form>
 
   <p>Resultat(s) pour: {{ nom }}</p>
   <div class="card-container">
@@ -22,25 +30,23 @@ export default {
     document.title = `Clients`
     const clients = ref([]);
     const nom = ref("");
+    const tri = ref("");
 
     const load = function () {
       let query = "http://localhost:4040/clients";
       if (nom.value) query += `?nom=${nom.value}`;
+      if (tri.value !== "" ) query += `?orderBy=${tri.value}`
       fetch(query).then((response) => {
         response.json().then((data) => {
             clients.value = data.data});
       });
     };
 
-    const test = function () {
-      load();
-    };
-
     onMounted(() => {
       load();
     });
 
-    return { clients, nom, test };
+    return { clients, nom, load, tri };
   },
 };
 </script>
