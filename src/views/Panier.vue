@@ -4,7 +4,7 @@
       <PanierItem :article="article" :index="index" @remove="removeFromCart"/>
     </div>
   </div>
-  <div class="btn" style="width: 180px;margin: auto">Passer la commande</div>
+  <div @click="passerCommande" class="btn" style="width: 180px;margin: auto">Passer la commande</div>
 
 </template>
 
@@ -24,11 +24,11 @@ export default {
       setCart(panier.value)
     }
 
-    return { panier, removeFromCart }
+    const passerCommande = function (){
+      console.log("passer commande, pas encore implémentée")
+    }
+
+    return { panier, removeFromCart, passerCommande }
   }
 }
 </script>
-
-<style scoped>
-
-</style>
