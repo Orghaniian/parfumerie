@@ -1,15 +1,20 @@
 <template>
-  <div v-for="(article, index) in panier" :key="article.no">
-    <span>{{ article }}</span>
-    <button @click="removeFromCart(index)">Retirer du panier</button>
+  <div class="card-container">
+    <div v-for="(article, index) in panier" :key="article.no">
+      <PanierItem :article="article" :index="index" @remove="removeFromCart"/>
+    </div>
   </div>
+  <div class="btn" style="width: 180px;margin: auto">Passer la commande</div>
+
 </template>
 
 <script>
 import useCart from "@/utils/useCart";
+import PanierItem from "@/components/PanierItem";
 
 export default {
   name: "Panier",
+  components: {PanierItem},
   setup () {
     document.title = `Panier`
     const { panier, setCart } = useCart()

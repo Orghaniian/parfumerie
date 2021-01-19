@@ -59,7 +59,6 @@ body {
 }
 
 .btn{
-  width: 90px;
   height: 23px;
   padding: 4px 10px;
   background: #FFFFFF;
@@ -69,4 +68,5 @@ body {
   line-height: 23px; // centre verticalement
   justify-self: center;
   color: black;
+  cursor: pointer;
 }
