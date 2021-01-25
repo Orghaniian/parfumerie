@@ -5,11 +5,34 @@
     <p v-else>Chargement...</p>
     <button @click="modif = !modif">Modifier</button>
   </div>
+
+
   <div v-else>
     <!-- TODO -->
-    <form action="">
-      inputs etc
-    </form>
+    <form @submit.prevent="handleSubmit">
+    <div>
+      <label for="nom">Nom</label>
+      <input type="text" name="nom" id="nom" v-model="client.Nom" required/>
+    </div>
+    <div>
+      <label for="facebook">Facebook</label>
+      <input type="text" name="facebook" id="facebook" v-model="client.facebook" required/>
+    </div>
+    <div>
+      <label for="instagram">Instagram</label>
+      <input type="text" name="instagram" id="instagram" v-model="client.instagram" required/>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" v-model="client.email" required/>
+    </div>
+    <div>
+      <label for="telephone">Telephone</label>
+      <input type="text" name="telephone" id="telephone" v-model="client.telephone" required/>
+    </div>
+    <button type="submit">Valider</button>
+  </form>
+  <p v-if="codeClientModifie">Client modifié ! n°{{ codeClientModifie }}</p>
   </div>
 </template>
 
@@ -22,23 +45,60 @@ export default {
   setup (props) {
     document.title = `Client`
     const client = ref(null)
-
     const modif = ref (false)
+    const codeClientModifie = ref(null)
+    const form = ref({
+        nom: "",
+        facebook: "",
+        instagram: "",
+        email: "",
+        telephone: ""
+    })
+
+    const handleSubmit = function () {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        const options = {
+            method: "PUT",
+            body: JSON.stringify({ ...form.value }),
+            headers: myHeaders
+        }
+
+        fetch("http://localhost:4040/client" + props.id, options)
+            .then((reponse) => reponse.json().then((data) => {
+              codeClientModifie.value = data.data
+              document.title = `Client - ${client.value.Nom}`
+            }))
+
+      form.value = {
+             nom: "",
+            facebook: "",
+            instagram: "",
+            email: "",
+            telephone: ""
+      }
+    }
 
     onMounted(() => {
-      fetch("http://localhost:4040/client/" + props.id).then((response) => {
-        response.json().then((data) => {
+      fetch("http://localhost:4040/client/" + props.id)
+      .then((response) => { response.json().then((data) => {
           client.value = data.data
           document.title = `Client - ${client.value.Nom}`
         });
       })
     })
 
-    return { client, modif }
+    return {  handleSubmit, client, modif, codeClientModifie }
   }
 }
 </script>
 
-<style scoped>
 
+<style lang="scss" scoped>
+  .clients{
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 </style>
