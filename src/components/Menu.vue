@@ -68,7 +68,7 @@
       <button  @click="toggleShowPanier">panier</button>
       <div v-if="showPanier">
         {{ panier }}
-        <router-link :to="{ name: 'Panier' }">Acceder au panier</router-link>
+        <router-link :to="{ name: 'Panier' }">Accéder au panier</router-link>
       </div>
     </div>
 

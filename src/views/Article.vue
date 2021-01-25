@@ -51,7 +51,7 @@ export default {
             }
           })
           if(!alreadyIn)
-            panier.value.push({ no: props.no, quantite: quantite.value })
+            panier.value.push({ no: props.no, quantite: quantite.value,prixUnit:  article.value.Prix_unitaire})
           setCart(panier.value)
         }
         else erreur.value = `Il ne reste que ${article.value.Quantite_en_stock} exemplaires en stock`
