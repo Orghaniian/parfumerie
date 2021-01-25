@@ -8,7 +8,7 @@
     <p>Prix total: {{ total }} Points</p>
     <p>Frais de livraison: {{ frais_livraison }}</p>
   </div>
-  <p v-else>Le panier est vide</p>
+  <p v-else>Le panier est vide <router-link :to="{ name: 'Catalogue' }">Voir le catalogue</router-link> </p>
 
   <div @click="passerCommande" class="btn" style="width: 180px;margin: auto">Passer la commande</div>
 
