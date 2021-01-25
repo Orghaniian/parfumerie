@@ -13,6 +13,7 @@
         <option value="asc">{{ selectOptions.asc }}</option>
         <option value="desc">{{ selectOptions.desc }}</option>
         <option value="nom">{{ selectOptions.nom }}</option>
+        <option v-if="selectOptions.stock" value="stock">{{ selectOptions.stock }}</option>
       </select>
     </div>
   </form>

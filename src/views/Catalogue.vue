@@ -2,7 +2,8 @@
   <SearchBar @load="load" :select-options="{
     asc: 'prix croissant',
     desc: 'prix décroissant',
-    nom: 'nom'
+    nom: 'nom',
+    stock: 'en stock uniquement'
   }"/>
   <p>{{ articles.length }} Resultat(s) pour: {{ nomRef }}</p>
   <div class="card-container">
@@ -26,9 +27,10 @@ export default {
     const load = function (e = {}) {
       const { tri, nom } = e
       nomRef.value = nom
-      let query = "http://localhost:4040/articles";
-      if (nom && nom !== "" ) query += `?nom=${nom}`;
-      if (tri && tri !== "" ) query += `?orderBy=${tri}`
+      let query = "http://localhost:4040/articles?";
+      if (nom && nom !== "" ) query += `&nom=${nom}`;
+      if (tri && tri == "stock") query += `&stock=true`
+      else if (tri && tri !== "") query += `&orderBy=${tri}`
       fetch(query).then((response) => {
         response.json().then((data) => (articles.value = data.data));
       });
