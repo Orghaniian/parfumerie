@@ -42,6 +42,7 @@ export default {
     })
 
     const passerCommande = function (){
+      // TODO verifier solde client et déduire prix
       const client = JSON.parse(localStorage.getItem("utilisateur"))
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
