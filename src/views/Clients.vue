@@ -1,4 +1,7 @@
 <template>
+
+<router-link :to="{ name: 'Inscrire' }">Inscrire un client</router-link>
+
   <SearchBar @load="load" :select-options="{
     asc: 'points croissant',
     desc: 'points décroissant',
