@@ -2,9 +2,11 @@
   <SearchBar @load="load" :select-options="{
     asc: 'prix croissant',
     desc: 'prix décroissant',
-    nom: 'nom',
-    stock: 'en stock uniquement'
-  }"/>
+    nom: 'nom'
+  }">
+    <label for="enStock">En stock uniquement</label>
+    <input @change="load" type="checkbox" name="enStock" id="enStock" v-model="enStock">
+  </SearchBar>
   <p>{{ articles.length }} Resultat(s) pour: {{ nomRef }}</p>
   <div class="card-container">
     <div v-for="article in articles" :key="article.id">
@@ -23,14 +25,15 @@ export default {
   setup() {
     const articles = ref([]);
     const nomRef = ref("")
+    const enStock = ref(false)
 
     const load = function (e = {}) {
       const { tri, nom } = e
       nomRef.value = nom
       let query = "http://localhost:4040/articles?";
       if (nom && nom !== "" ) query += `&nom=${nom}`;
-      if (tri && tri == "stock") query += `&stock=true`
-      else if (tri && tri !== "") query += `&orderBy=${tri}`
+      if (enStock.value) query += `&stock=true`
+      if (tri && tri !== "") query += `&orderBy=${tri}`
       fetch(query).then((response) => {
         response.json().then((data) => (articles.value = data.data));
       });
@@ -40,7 +43,7 @@ export default {
       load();
     });
 
-    return { articles, load, nomRef};
+    return { articles, load, nomRef, enStock};
   },
 };
 </script>
