@@ -1,5 +1,6 @@
 <template>
   Client: {{ no }}
+  {{ client }}
   <div v-if="!modif">
     <p v-if="client">{{ client }}</p>
     <p v-else>Chargement...</p>
@@ -16,19 +17,19 @@
     </div>
     <div>
       <label for="facebook">Facebook</label>
-      <input type="text" name="facebook" id="facebook" v-model="client.facebook" required/>
+      <input type="text" name="facebook" id="facebook" v-model="client.Facebook" required/>
     </div>
     <div>
       <label for="instagram">Instagram</label>
-      <input type="text" name="instagram" id="instagram" v-model="client.instagram" required/>
+      <input type="text" name="instagram" id="instagram" v-model="client.Instagram" required/>
     </div>
     <div>
       <label for="email">Email</label>
-      <input type="text" name="email" id="email" v-model="client.email" required/>
+      <input type="text" name="email" id="email" v-model="client.Email" required/>
     </div>
     <div>
       <label for="telephone">Telephone</label>
-      <input type="text" name="telephone" id="telephone" v-model="client.telephone" required/>
+      <input type="text" name="telephone" id="telephone" v-model="client.Telephone" required/>
     </div>
     <button type="submit">Valider</button>
   </form>
@@ -47,36 +48,21 @@ export default {
     const client = ref(null)
     const modif = ref (false)
     const codeClientModifie = ref(null)
-    const form = ref({
-        nom: "",
-        facebook: "",
-        instagram: "",
-        email: "",
-        telephone: ""
-    })
 
     const handleSubmit = function () {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         const options = {
             method: "PUT",
-            body: JSON.stringify({ ...form.value }),
+            body: JSON.stringify({ ...client.value }),
             headers: myHeaders
         }
 
-        fetch("http://localhost:4040/client" + props.id, options)
+        fetch("http://localhost:4040/client/" + props.id, options)
             .then((reponse) => reponse.json().then((data) => {
               codeClientModifie.value = data.data
               document.title = `Client - ${client.value.Nom}`
             }))
-
-      form.value = {
-             nom: "",
-            facebook: "",
-            instagram: "",
-            email: "",
-            telephone: ""
-      }
     }
 
     onMounted(() => {
