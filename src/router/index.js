@@ -13,6 +13,7 @@ import isConnected from "@/utils/isConnected";
 import isAdmin from "@/utils/isAdmin";
 import Profil from "@/views/Profil";
 import Panier from "@/views/Panier";
+import Inscription from "@/views/Inscription";
 
 const requireAdmin = (to, from, next) => {
   if(!isAdmin())
@@ -113,6 +114,12 @@ const routes = [
     name: "Panier",
     component: Panier,
     beforeEnter: requireAuth
+  },
+  {
+    path: "/inscription",
+    name: "Inscription",
+    component: Inscription,
+    beforeEnter: requireNoAuth
   }
 ]
 

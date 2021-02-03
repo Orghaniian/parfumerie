@@ -1,12 +1,15 @@
 <template>
+  <h2>Connexion</h2>
   <form @submit.prevent="handleSubmit">
-    <label for="login"></label>
+    <label for="login">Login: </label>
     <input type="text" required v-model="login" name="login" id="login" autocomplete="on">
-    <label for="password"></label>
+    <label for="password">Mot de passe: </label>
     <input type="password" required v-model="password" name="password" id="password" autocomplete="on">
     <div >{{ error }}</div>
     <button>Se connecter</button>
   </form>
+  <h3>Pas encore inscris ?</h3>
+  <router-link :to="{ name: 'Inscription' }">S'inscrire</router-link>
 </template>
 
 <script>
@@ -64,5 +67,10 @@ export default {
 </script>
 
 <style scoped>
-
+form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 </style>
