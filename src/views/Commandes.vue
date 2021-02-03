@@ -17,11 +17,11 @@
 
 <script>
 import { onMounted, ref } from "vue";
-import CommandesItem from "@/components/CommandesItem ";
 import SearchBar from "@/components/SearchBar";
+import CommandesItem from "@/components/CommandesItem";
 export default {
   name: "Commandes",
-  components: {SearchBar, CommandesItem },
+  components: {CommandesItem, SearchBar },
   setup() {
     const commandes = ref([]);
     const numRef = ref("")

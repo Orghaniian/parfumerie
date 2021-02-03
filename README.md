@@ -2,14 +2,14 @@
     -Admin
         * Créer/modifier fiche client (mayou) // DONE
         * Consulter liste des clients/ une fiche client par nom/identifiant (Mayou) // DONE
-        * gestion des commandes (mayou) //
+        * gestion des commandes (mayou) // TODO Récuperer contenu(articles) de la commande à afficher sur /commande
         * génerer facture
         * exporter la liste des commandes dans un fichier excel (mayou)
         * réaliser des opérations à la place d'un client
         * ajouter/modifier/retirer cadeaux (mayou)
     - Client
-        * Consulter son profil
-        * consulter les cadeaux
+        * Consulter son profil (julien) // TODO Consulter l'historique et l'état des commandes
+        * consulter les cadeaux (Julien) // DONE (ajouter plus de filtres ?)
         * échanger cadeaux (Julien) // DONE
 
 # :cherry_blossom: parfumerie :cherry_blossom:

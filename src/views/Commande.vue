@@ -1,6 +1,5 @@
 <template>
   Commande: {{ no }}
-  {{ commande }}
   <div v-if="!modif">
     <p v-if="commande">{{ commande }}</p>
     <p v-else>Chargement...</p>
@@ -9,8 +8,8 @@
 
 
   <div v-else>
-    <p> Commande numero : </p>
-    <p> Date : </p>
+    <p> Commande numero : {{ commande.No_commande }}</p>
+    <p> Date : {{ commande.Date_commande }}</p>
     <form @submit.prevent="handleSubmit">
     <div>
       <label for="prix">Prix</label>
@@ -65,7 +64,7 @@ export default {
     onMounted(() => {
       fetch("http://localhost:4040/commande/" + props.id)
       .then((response) => { response.json().then((data) => {
-          commande.value = data.data
+          commande.value = data.data[0]
           document.title = `Commande - ${commande.value.No_commande}`
         });
       })
