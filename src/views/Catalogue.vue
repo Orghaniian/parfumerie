@@ -7,6 +7,9 @@
     <label for="enStock">En stock uniquement</label>
     <input @change="load" type="checkbox" name="enStock" id="enStock" v-model="enStock">
   </SearchBar>
+  <router-link :to="{ name: 'Ajouter' }" v-if="admin">
+    Ajouter un nouvel article
+  </router-link>
   <p>{{ articles.length }} Resultat(s) pour: {{ nomRef }}</p>
   <div class="card-container">
     <div v-for="article in articles" :key="article.id">
@@ -16,9 +19,10 @@
 </template>
 
 <script>
-import { onMounted, ref } from "vue";
+import {computed, onMounted, ref} from "vue";
 import CatalogueItem from "@/components/CatalogueItem";
 import SearchBar from "@/components/SearchBar";
+import isAdmin from "@/utils/isAdmin";
 export default {
   name: "Catalogue",
   components: {SearchBar, CatalogueItem},
@@ -43,7 +47,9 @@ export default {
       load();
     });
 
-    return { articles, load, nomRef, enStock};
+    const admin = computed(() => isAdmin())
+
+    return { articles, load, nomRef, enStock, admin};
   },
 };
 </script>
