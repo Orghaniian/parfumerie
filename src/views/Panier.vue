@@ -9,15 +9,16 @@
     <p>Frais de livraison: {{ frais_livraison }}</p>
   </div>
   <p v-else>Le panier est vide <router-link :to="{ name: 'Catalogue' }">Voir le catalogue</router-link> </p>
-
-  <div @click="passerCommande" class="btn" style="width: 180px;margin: auto">Passer la commande</div>
+  <div style="color: red">{{ error }}</div>
+  <button @click="passerCommande" class="btn" style="width: 180px;margin: auto">Passer la commande</button>
 
 </template>
 
 <script>
 import useCart from "@/utils/useCart";
 import PanierItem from "@/components/PanierItem";
-import {computed} from "vue";
+import {computed, ref} from "vue";
+import {useRouter} from "vue-router";
 
 export default {
   name: "Panier",
@@ -41,32 +42,55 @@ export default {
       return somme
     })
 
-    const passerCommande = function (){
-      // TODO verifier solde client et déduire prix
-      const client = JSON.parse(localStorage.getItem("utilisateur"))
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      const options = {
-        method: "POST",
-        body: JSON.stringify({
-          prix: total.value,
-          frais_livraison,
-          code_client: client.CodeClient,
-          articles: panier.value
-        }),
-        headers: myHeaders
-      }
+    const error = ref(null)
+    const router = useRouter()
 
-      fetch("http://localhost:4040/commande", options)
-          .then((reponse) => reponse.json().then(() => {
-            panier.value = []
-            setCart(panier.value)
-          }))
+    const passerCommande = async function (){
+      console.log("passer commande")
+      error.value = null
+      const client = JSON.parse(localStorage.getItem("utilisateur"))
+      try{
+        //vérification solde
+        let response = await fetch(`http://localhost:4040/client/${client.CodeClient}`)
+        const repsonseClient = await response.json()
+        if (repsonseClient.status !== 200)
+          throw new Error(`Erreur lors de la récupération des données du client n° ${client.CodeClient}: ${repsonseClient.message}`)
+
+        if( repsonseClient.data.Points >=  total.value){
+          //ajout commande
+          let myHeaders = new Headers();
+          myHeaders.append("Content-Type", "application/json");
+          let options = {
+            method: "POST",
+            body: JSON.stringify({
+              prix: total.value,
+              frais_livraison,
+              code_client: client.CodeClient,
+              articles: panier.value
+            }),
+            headers: myHeaders
+          }
+          response = await fetch("http://localhost:4040/commande", options)
+          const responseCommande = await response.json()
+          if (repsonseClient.status !== 200)
+            throw new Error(`Erreur lors de l'envoi de la commande: ${responseCommande.message}`)
+
+          panier.value = []
+          setCart(panier.value)
+          router.push("/")
+        }else{
+          error.value = "Vous n'avez pas suffisamment de points"
+          console.log("erreur: ", error.value)
+        }
+      }catch (e) {
+        console.log("ERREUR: ", e)
+        error.value = "Il y a eu une erreur du côté du serveur"
+      }
     }
 
 
 
-    return { panier, removeFromCart, passerCommande, total, frais_livraison }
+    return { panier, removeFromCart, passerCommande, total, frais_livraison, error }
   }
 }
 </script>

@@ -65,7 +65,7 @@
 
     </ul>
     <div v-if="logged && !admin">
-      <button  @click="toggleShowPanier">panier</button>
+      <button  @click="toggleShowPanier">panier ({{ panier.length }})</button>
       <div v-if="showPanier">
         {{ panier }}
         <router-link :to="{ name: 'Panier' }">Accéder au panier</router-link>

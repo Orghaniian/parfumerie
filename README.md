@@ -10,7 +10,7 @@
     - Client
         * Consulter son profil
         * consulter les cadeaux
-        * échanger cadeaux (Julien)
+        * échanger cadeaux (Julien) // DONE
 
 # :cherry_blossom: parfumerie :cherry_blossom:
 Fonctionne de paire avec [Parfumerie-api](https://github.com/Orghaniian/parfumerie-api)
