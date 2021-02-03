@@ -55,13 +55,9 @@ export default {
       load();
     });
 
-<<<<<<< HEAD
-    return { articles, load, nomRef, enStock, echangeable, enCadeau};
-=======
     const admin = computed(() => isAdmin())
 
-    return { articles, load, nomRef, enStock, admin};
->>>>>>> ab924d606992bc9078c9b912f0fda92ac74eeeef
+    return { articles, load, nomRef, enStock, echangeable, enCadeau, admin};
   },
 };
 </script>
