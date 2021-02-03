@@ -45,26 +45,18 @@
     </div>
   </div>
   <p v-else>Chargement...</p>
-<<<<<<< HEAD
   <button @click="modif = !modif">Modifier</button>
   <button @click="fonctionSupp()">Supprimer</button>
-=======
->>>>>>> 58672e3f86c0a0bd4c9003febc5d8a4ef4189c4f
   <p v-if="erreur">{{ erreur }}</p>
 
 
 </template>
 
 <script>
-<<<<<<< HEAD
-import {onMounted, ref} from "vue";
-import useCart from "@/utils/useCart"
-import {useRouter} from "vue-router";
-=======
 import {computed, onMounted, ref} from "vue";
 import useCart from "@/utils/useCart";
 import isAdmin from "@/utils/isAdmin";
->>>>>>> 58672e3f86c0a0bd4c9003febc5d8a4ef4189c4f
+import {useRouter} from "vue-router";
 
 export default {
   name: "Article",
@@ -73,28 +65,10 @@ export default {
     console.log(props)
     document.title = `Article`
     const article = ref(null)
-<<<<<<< HEAD
     const modif = ref (false)
     const codeArticleModifie = ref(null)
     const router = useRouter()
 
-    const handleSubmit = function () {
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        const options = {
-            method: "PUT",
-            body: JSON.stringify({ ...article.value }),
-            headers: myHeaders
-        }
-
-        fetch("http://localhost:4040/article/" + props.id, options)
-            .then((reponse) => reponse.json().then((data) => {
-              codeArticleModifie.value = data.data
-              document.title = `Article - ${article.value.Nom}`
-            }))
-    }
-=======
->>>>>>> 58672e3f86c0a0bd4c9003febc5d8a4ef4189c4f
 
     onMounted(() => {
       fetch("http://localhost:4040/article/" + props.no).then((response) => {
@@ -130,17 +104,11 @@ export default {
       }else erreur.value = "Veuillez selectionner une quantité supérieur à 0"
     }
 
-<<<<<<< HEAD
     const fonctionSupp = function () {
         fetch(`http://localhost:4040/article/${props.no}`, { method: "DELETE" }).then( () => {
           router.push({name: "Catalogue"})
         })
     }
-
-    return { handleSubmit, fonctionSupp, article, addCart, quantite, erreur, modif, codeArticleModifie }
-=======
-    const modif = ref (false)
-    const codeArticleModifie = ref(null)
 
     const handleSubmit = function () {
       const myHeaders = new Headers();
@@ -160,8 +128,7 @@ export default {
 
     const admin = computed(() => isAdmin())
 
-    return { article, addCart, quantite, erreur, modif, handleSubmit, codeArticleModifie, admin}
->>>>>>> 58672e3f86c0a0bd4c9003febc5d8a4ef4189c4f
+    return { fonctionSupp, article, addCart, quantite, erreur, modif, handleSubmit, codeArticleModifie, admin}
   }
 }
 </script>
