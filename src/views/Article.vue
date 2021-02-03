@@ -59,6 +59,7 @@ export default {
   name: "Article",
   props: ["no"],
   setup (props) {
+    console.log(props)
     document.title = `Article`
     const article = ref(null)
 
@@ -108,10 +109,10 @@ export default {
         headers: myHeaders
       }
 
-      fetch("http://localhost:4040/article/" + props.id, options)
+
+      fetch("http://localhost:4040/article/" + props.no, options)
           .then((reponse) => reponse.json().then((data) => {
             codeArticleModifie.value = data.data
-            document.title = `Article - ${article.value.Nom}`
           }))
     }
 
