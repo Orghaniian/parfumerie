@@ -1,55 +1,59 @@
 <template>
   Article: {{ no }}
-  {{ article }}
-  <div v-if="!modif">
-    <pre>{{ article }}</pre>
-    <p v-if="article">{{ article }}</p>
-    <p v-if="article.Quantite_en_stock <= 0">Stock épuisé!</p> 
-    <label for="quantite">Quantité: </label>
-    <input type="number" min="0"  id="quantite" v-model="quantite"/>
-    <button :disabled="article.Quantite_en_stock <= 0" @click.prevent="addCart">{{ article ? "Ajouter au panier" : "Chargement..." }}</button>
+  <div v-if="article">
+    <div v-if="!modif">
+      <pre>{{ article }}</pre>
+      <p v-if="article.Quantite_en_stock <= 0">Stock épuisé!</p>
+      <div v-if="!admin">
+        <label for="quantite">Quantité: </label>
+        <input type="number" min="0"  id="quantite" v-model="quantite"/>
+        <button :disabled="article.Quantite_en_stock <= 0" @click.prevent="addCart">{{ article ? "Ajouter au panier" : "Chargement..." }}</button>
+      </div>
+      <div v-else>
+        <button @click="modif = !modif">Modifier</button>
+      </div>
+    </div>
+    <div v-else>
+      <form @submit.prevent="handleSubmit">
+        <div>
+          <label for="nom">Nom</label>
+          <input type="text" name="nom" id="nom" v-model="article.Nom" required/>
+        </div>
+        <div>
+          <label for="quantite">Quantité</label>
+          <input type="number" name="quantite" id="quantite" v-model="article.Quantite_en_stock" required/>
+        </div>
+        <div>
+          <label for="prix">Prix</label>
+          <input type="number" step="0.01" name="prix" id="prix" v-model="article.Prix_unitaire" required/>
+        </div>
+        <div>
+          <label for="disponible">Disponible</label>
+          <input type="checkbox" name="disponible" id="disponible" v-model="article.Disponible"/>
+        </div>
+        <div>
+          <label for="cadeau">En cadeau</label>
+          <input type="checkbox" name="cadeau" id="cadeau" v-model="article.En_cadeau"/>
+        </div>
+        <div>
+          <label for="echangeable">Échangeable</label>
+          <input type="checkbox" name="echangeable" id="echangeable" v-model="article.Echangeable" />
+        </div>
+        <button type="submit">Valider</button>
+      </form>
+      <p v-if="codeArticleModifie">Article modifié ! n°{{ codeArticleModifie }}</p>
+    </div>
   </div>
   <p v-else>Chargement...</p>
-  <button @click="modif = !modif">Modifier</button>
   <p v-if="erreur">{{ erreur }}</p>
 
 
-  <div v-else>
-    <p>Article numero : </p>
-    <form @submit.prevent="handleSubmit">
-    <div>
-      <label for="nom">Nom</label>
-      <input type="text" name="nom" id="nom" v-model="article.nom" required/>
-    </div>
-    <div>
-      <label for="quantite">Quantité</label>
-      <input type="number" name="quantite" id="quantite" v-model="article.quantite_en_stock" required/>
-    </div>
-    <div>
-      <label for="prix">Prix</label>
-      <input type="number" step="0.01" name="prix" id="prix" v-model="article.prix_unitaire" required/>
-    </div>
-    <div>
-      <label for="disponible">Disponible</label>
-      <input type="checkbox" name="disponible" id="disponible" v-model="article.disponible"/>
-    </div>
-    <div>
-      <label for="cadeau">En cadeau</label>
-      <input type="checkbox" name="cadeau" id="cadeau" v-model="article.en_cadeau"/>
-    </div>
-    <div>
-      <label for="echangeable">Échangeable</label>
-      <input type="checkbox" name="echangeable" id="echangeable" v-model="article.echangeable" />
-    </div>
-    <button type="submit">Modifier</button>
-  </form>
-  <p v-if="codeArticleModifie">Article modifié ! n°{{ codeArticleModifie }}</p>
-  </div>
 </template>
 
 <script>
-import {onMounted, ref} from "vue";
-import useCart from "@/utils/useCart"
+import {computed, onMounted, ref} from "vue";
+import useCart from "@/utils/useCart";
+import isAdmin from "@/utils/isAdmin";
 
 export default {
   name: "Article",
@@ -57,24 +61,6 @@ export default {
   setup (props) {
     document.title = `Article`
     const article = ref(null)
-    const modif = ref (false)
-    const codeArticleModifie = ref(null)
-
-    const handleSubmit = function () {
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        const options = {
-            method: "PUT",
-            body: JSON.stringify({ ...article.value }),
-            headers: myHeaders
-        }
-
-        fetch("http://localhost:4040/article/" + props.id, options)
-            .then((reponse) => reponse.json().then((data) => {
-              codeArticleModifie.value = data.data
-              document.title = `Article - ${article.value.Nom}`
-            }))
-    }
 
     onMounted(() => {
       fetch("http://localhost:4040/article/" + props.no).then((response) => {
@@ -108,11 +94,30 @@ export default {
         }
         else erreur.value = `Il ne reste que ${article.value.Quantite_en_stock} exemplaires en stock`
       }else erreur.value = "Veuillez selectionner une quantité supérieur à 0"
-
-
     }
 
-    return { handleSubmit, article, addCart, quantite, erreur, modif, codeArticleModifie }
+    const modif = ref (false)
+    const codeArticleModifie = ref(null)
+
+    const handleSubmit = function () {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      const options = {
+        method: "PUT",
+        body: JSON.stringify({ ...article.value }),
+        headers: myHeaders
+      }
+
+      fetch("http://localhost:4040/article/" + props.id, options)
+          .then((reponse) => reponse.json().then((data) => {
+            codeArticleModifie.value = data.data
+            document.title = `Article - ${article.value.Nom}`
+          }))
+    }
+
+    const admin = computed(() => isAdmin())
+
+    return { article, addCart, quantite, erreur, modif, handleSubmit, codeArticleModifie, admin}
   }
 }
 </script>
