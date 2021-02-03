@@ -1,7 +1,8 @@
 <template>
   <Card img-src="https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg">
     <div class="infos">
-      <h3>{{ client.Nom }}</h3>
+      <h3>{{ client.Nom ? client.Nom : "pas Nom pas de cadeau!" }}</h3>
+      <span>Code client:{{ client.Code_client }}</span>
       <p>Membership: {{ client.Categorie_membership_No_membership }}</p>
       <p>{{ client.Points }} points</p>
       <router-link class="btn" style="text-align: center" :to="{ name: 'Client', params: { id: client.Code_client } } ">Voir plus</router-link>
