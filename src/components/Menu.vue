@@ -89,6 +89,7 @@ export default {
     const logout = function (){
       context.emit("logout")
       router.push("/")
+      location.reload()
     }
 
     const admin = computed(() => isAdmin())

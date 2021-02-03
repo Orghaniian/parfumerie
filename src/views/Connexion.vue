@@ -52,6 +52,7 @@ export default {
             CodeClient: data.data.Code_Client
           })
           router.push("/")
+          location.reload()
         }
       })
 
