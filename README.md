@@ -5,7 +5,7 @@
         * gestion des commandes (mayou) // TODO Récuperer contenu(articles) de la commande à afficher sur /commande  //gestion DONE
         * génerer facture
         * exporter la liste des commandes dans un fichier excel (mayou)
-        * réaliser des opérations à la place d'un client
+        * réaliser des opérations à la place d'un client ( julien )
         * ajouter/modifier/retirer cadeaux (mayou) //DONE
     - Client
         * Consulter son profil (julien) // TODO Consulter l'historique et l'état des commandes
