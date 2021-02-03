@@ -8,7 +8,6 @@ import Commandes from "../views/Commandes.vue";
 import Commande from "../views/Commande.vue";
 import Clients from "../views/Clients.vue";
 import Client from "../views/Client.vue";
-import ModifierClient from "../views/ModifierClient.vue";
 import Connexion from "@/views/Connexion";
 import isConnected from "@/utils/isConnected";
 import isAdmin from "@/utils/isAdmin";
@@ -74,13 +73,6 @@ const routes = [
     path: "/client/:id",
     name: "Client",
     component: Client,
-    props: true,
-    beforeEnter: requireAdmin
-  },
-  {
-    path: "/client/modifier/:id",
-    name: "ModifierClient",
-    component: ModifierClient,
     props: true,
     beforeEnter: requireAdmin
   },

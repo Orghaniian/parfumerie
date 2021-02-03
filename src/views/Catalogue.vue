@@ -6,6 +6,10 @@
   }">
     <label for="enStock">En stock uniquement</label>
     <input @change="load" type="checkbox" name="enStock" id="enStock" v-model="enStock">
+    <label for="echangeable">Article échangeable en points</label>
+    <input @change="load" type="checkbox" name="echangeable" id="echangeable" v-model="echangeable">
+    <label for="enCadeau">Obtenable en cadeau</label>
+    <input @change="load" type="checkbox" name="enCadeau" id="enCadeau" v-model="enCadeau">
   </SearchBar>
   <p>{{ articles.length }} Resultat(s) pour: {{ nomRef }}</p>
   <div class="card-container">
@@ -26,6 +30,8 @@ export default {
     const articles = ref([]);
     const nomRef = ref("")
     const enStock = ref(false)
+    const echangeable = ref(false)
+    const enCadeau = ref(false)
 
     const load = function (e = {}) {
       const { tri, nom } = e
@@ -33,6 +39,8 @@ export default {
       let query = "http://localhost:4040/articles?";
       if (nom && nom !== "" ) query += `&nom=${nom}`;
       if (enStock.value) query += `&stock=true`
+      if (echangeable.value) query += `&echangeable=true`
+      if (enCadeau.value) query += `&cadeau=true`
       if (tri && tri !== "") query += `&orderBy=${tri}`
       fetch(query).then((response) => {
         response.json().then((data) => (articles.value = data.data));
@@ -43,7 +51,7 @@ export default {
       load();
     });
 
-    return { articles, load, nomRef, enStock};
+    return { articles, load, nomRef, enStock, echangeable, enCadeau};
   },
 };
 </script>
