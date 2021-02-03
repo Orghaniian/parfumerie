@@ -11,6 +11,9 @@
     <label for="enCadeau">Obtenable en cadeau</label>
     <input @change="load" type="checkbox" name="enCadeau" id="enCadeau" v-model="enCadeau">
   </SearchBar>
+  <router-link :to="{ name: 'Ajouter' }" v-if="admin">
+    Ajouter un nouvel article
+  </router-link>
   <p>{{ articles.length }} Resultat(s) pour: {{ nomRef }}</p>
   <div class="card-container">
     <div v-for="article in articles" :key="article.id">
@@ -20,9 +23,10 @@
 </template>
 
 <script>
-import { onMounted, ref } from "vue";
+import {computed, onMounted, ref} from "vue";
 import CatalogueItem from "@/components/CatalogueItem";
 import SearchBar from "@/components/SearchBar";
+import isAdmin from "@/utils/isAdmin";
 export default {
   name: "Catalogue",
   components: {SearchBar, CatalogueItem},
@@ -51,7 +55,13 @@ export default {
       load();
     });
 
+<<<<<<< HEAD
     return { articles, load, nomRef, enStock, echangeable, enCadeau};
+=======
+    const admin = computed(() => isAdmin())
+
+    return { articles, load, nomRef, enStock, admin};
+>>>>>>> ab924d606992bc9078c9b912f0fda92ac74eeeef
   },
 };
 </script>
