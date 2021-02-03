@@ -5,11 +5,11 @@
     <p v-if="client">{{ client }}</p>
     <p v-else>Chargement...</p>
     <button @click="modif = !modif">Modifier</button>
+    <button @click="fonctionSupp()">Supprimer</button>
   </div>
 
 
   <div v-else>
-    <!-- TODO -->
     <form @submit.prevent="handleSubmit">
     <div>
       <label for="nom">Nom</label>
@@ -39,6 +39,7 @@
 
 <script>
 import {onMounted, ref} from "vue";
+import {useRouter} from "vue-router";
 
 export default {
   name: "Client",
@@ -48,6 +49,7 @@ export default {
     const client = ref(null)
     const modif = ref (false)
     const codeClientModifie = ref(null)
+    const router = useRouter()
 
     const handleSubmit = function () {
         const myHeaders = new Headers();
@@ -74,7 +76,15 @@ export default {
       })
     })
 
-    return {  handleSubmit, client, modif, codeClientModifie }
+    
+    const fonctionSupp = function () {
+        fetch(`http://localhost:4040/client/${props.id}`, { method: "DELETE" }).then( () => {
+          router.push({name: "Clients"})
+        })
+    }
+    
+
+    return {  handleSubmit, fonctionSupp, client, modif, codeClientModifie }
   }
 }
 </script>

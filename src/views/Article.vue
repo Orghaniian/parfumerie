@@ -11,6 +11,7 @@
   </div>
   <p v-else>Chargement...</p>
   <button @click="modif = !modif">Modifier</button>
+  <button @click="fonctionSupp()">Supprimer</button>
   <p v-if="erreur">{{ erreur }}</p>
 
 
@@ -50,6 +51,7 @@
 <script>
 import {onMounted, ref} from "vue";
 import useCart from "@/utils/useCart"
+import {useRouter} from "vue-router";
 
 export default {
   name: "Article",
@@ -59,6 +61,7 @@ export default {
     const article = ref(null)
     const modif = ref (false)
     const codeArticleModifie = ref(null)
+    const router = useRouter()
 
     const handleSubmit = function () {
         const myHeaders = new Headers();
@@ -108,11 +111,15 @@ export default {
         }
         else erreur.value = `Il ne reste que ${article.value.Quantite_en_stock} exemplaires en stock`
       }else erreur.value = "Veuillez selectionner une quantité supérieur à 0"
-
-
     }
 
-    return { handleSubmit, article, addCart, quantite, erreur, modif, codeArticleModifie }
+    const fonctionSupp = function () {
+        fetch(`http://localhost:4040/article/${props.no}`, { method: "DELETE" }).then( () => {
+          router.push({name: "Catalogue"})
+        })
+    }
+
+    return { handleSubmit, fonctionSupp, article, addCart, quantite, erreur, modif, codeArticleModifie }
   }
 }
 </script>

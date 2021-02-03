@@ -4,6 +4,7 @@
     <p v-if="commande">{{ commande }}</p>
     <p v-else>Chargement...</p>
     <button @click="modif = !modif">Modifier</button>
+    <button @click="fonctionSupp()">Supprimer</button>
   </div>
 
 
@@ -35,6 +36,7 @@
 
 <script>
 import {onMounted, ref} from "vue";
+import {useRouter} from "vue-router";
 
 export default {
   name: "Commande",
@@ -44,6 +46,7 @@ export default {
     const commande = ref(null)
     const modif = ref (false)
     const codeCommandeModifie = ref(null)
+    const router = useRouter()
 
     const handleSubmit = function () {
         const myHeaders = new Headers();
@@ -70,7 +73,13 @@ export default {
       })
     })
 
-    return {  handleSubmit, commande, modif, codeCommandeModifie }
+    const fonctionSupp = function () {
+        fetch(`http://localhost:4040/commande/${props.id}`, { method: "DELETE" }).then( () => {
+          router.push({name: "Commandes"})
+        })
+    }
+
+    return {  handleSubmit, fonctionSupp, commande, modif, codeCommandeModifie }
   }
 }
 </script>
