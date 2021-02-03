@@ -8,6 +8,9 @@
   <router-link :to="{ name: 'Clients' }">Voir les clients</router-link>
   <br/>
   <br/>
+  <router-link :to="{ name: 'Commandes' }">Voir les commandes</router-link>
+  <br/>
+  <br/>
   <router-link to="/">Paramètres</router-link>
   <br/>
 </template>

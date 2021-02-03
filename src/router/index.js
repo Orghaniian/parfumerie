@@ -4,6 +4,8 @@ import Catalogue from "../views/Catalogue.vue";
 import Ajouter from "../views/Ajouter.vue";
 import Inscrire from "../views/Inscrire.vue";
 import Article from "@/views/Article";
+import Commandes from "../views/Commandes.vue";
+import Commande from "../views/Commande.vue";
 import Clients from "../views/Clients.vue";
 import Client from "../views/Client.vue";
 import ModifierClient from "../views/ModifierClient.vue";
@@ -48,6 +50,19 @@ const routes = [
     name: "Catalogue",
     component: Catalogue,
     beforeEnter: requireAuth
+  },
+  {
+    path: "/commandes",
+    name: "Commandes",
+    component: Commandes,
+    beforeEnter: requireAdmin
+  },
+  {
+    path: "/commande/:id",
+    name: "Commande",
+    component: Commande,
+    props: true,
+    beforeEnter: requireAdmin
   },
   {
     path: "/clients",
