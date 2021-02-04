@@ -36,7 +36,7 @@ export default {
     watch([ password, confirmPassword ], () => {
       if (password.value !== confirmPassword.value && confirmPassword.value !== ""){
         console.log(confirmPassword.value !== "")
-        error.value = "Confiration incorrect, veuillez entrer deux fois le même mot de passe !"
+        error.value = "Confirmation incorrect, veuillez entrer deux fois le même mot de passe !"
       }else{
         error.value = null
       }
@@ -47,7 +47,7 @@ export default {
       if (password.value !== confirmPassword.value){
         //TODO route d'inscription dans l'api
       }else{
-        error.value = "Confiration incorrect, veuillez entrer deux fois le même mot de passe !"
+        error.value = "Confirmation incorrect, veuillez entrer deux fois le même mot de passe !"
       }
     }
 

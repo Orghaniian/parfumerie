@@ -1,7 +1,20 @@
 <template>
+<<<<<<< HEAD
   Commande: {{ id }}
+=======
+  Commande N°: {{ id }}
+>>>>>>> d84ef74b2cca3a1cfc27fa260c32143e1c8f7e03
   <div v-if="!modif">
-    <p v-if="commande">{{ commande }}</p>
+    <div v-if="commande">
+      <p>Client: {{ commande.Code_client }}</p>
+      <p>Date: {{ commande.Date_commande}}</p>
+      <p>Prix total: {{ commande.Prix }}</p>
+      <p>Frais de livraison: {{ commande.Frais_livraison }}</p>
+      <p>Statut: {{ commande.Statut }}</p>
+      <div v-for="article in commande.articles" :key="article.No_article">
+        {{ article }}
+      </div>
+    </div>
     <p v-else>Chargement...</p>
     <button @click="modif = !modif">Modifier</button>
     <button @click="fonctionSupp()">Supprimer</button>
@@ -68,6 +81,10 @@ export default {
       fetch("http://localhost:4040/commande/" + props.id)
       .then((response) => { response.json().then((data) => {
           commande.value = data.data
+<<<<<<< HEAD
+=======
+        console.log(data.data)
+>>>>>>> d84ef74b2cca3a1cfc27fa260c32143e1c8f7e03
           document.title = `Commande - ${commande.value.No_commande}`
         });
       })
