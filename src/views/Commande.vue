@@ -1,9 +1,5 @@
 <template>
-<<<<<<< HEAD
-  Commande: {{ id }}
-=======
   Commande N°: {{ id }}
->>>>>>> d84ef74b2cca3a1cfc27fa260c32143e1c8f7e03
   <div v-if="!modif">
     <div v-if="commande">
       <p>Client: {{ commande.Code_client }}</p>
@@ -81,10 +77,6 @@ export default {
       fetch("http://localhost:4040/commande/" + props.id)
       .then((response) => { response.json().then((data) => {
           commande.value = data.data
-<<<<<<< HEAD
-=======
-        console.log(data.data)
->>>>>>> d84ef74b2cca3a1cfc27fa260c32143e1c8f7e03
           document.title = `Commande - ${commande.value.No_commande}`
         });
       })

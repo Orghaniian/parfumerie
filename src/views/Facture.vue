@@ -1,6 +1,5 @@
 <template>
-  Facture: {{ id }}
-  {{ facture }}
+  Facture: {{ no }}
     <p v-if="facture">{{ facture }}</p>
     <p v-else>Chargement...</p>
 </template>
@@ -10,23 +9,24 @@ import {onMounted, ref} from "vue";
 
 export default {
   name: "Facture",
-  props: ["id"],
+  props: ["no"],
   setup (props) {
     document.title = `Facture`
     const facture = ref(null)
-
+    
+    console.log(props)
 
     onMounted(() => {
-      fetch("http://localhost:4040/facture/" + props.id)
+      fetch("http://localhost:4040/facture/" + props.no)
       .then((response) => { response.json().then((data) => {
           facture.value = data.data
           document.title = `Facture - ${facture.value.no_facture}`
+
+          console.log(data)
         });
       })
     })
 
-
-    
 
     return { facture }
   }
