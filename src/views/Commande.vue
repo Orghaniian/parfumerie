@@ -77,7 +77,6 @@ export default {
       fetch("http://localhost:4040/commande/" + props.id)
       .then((response) => { response.json().then((data) => {
           commande.value = data.data
-        console.log(data.data)
           document.title = `Commande - ${commande.value.No_commande}`
         });
       })

@@ -4,8 +4,8 @@
   <div v-if="!modif">
     <p v-if="client">{{ client }}</p>
     <p v-else>Chargement...</p>
-    <button @click="modif = !modif">Modifier</button>
-    <button @click="fonctionSupp()">Supprimer</button>
+      <button @click="modif = !modif">Modifier</button>
+      <button @click="fonctionSupp()">Supprimer</button>
   </div>
 
 
