@@ -20,6 +20,7 @@
 
 <script>
 import {ref, watch} from "vue";
+import {useRouter} from "vue-router";
 
 export default {
   name: "Inscription",
@@ -42,6 +43,8 @@ export default {
       }
     })
 
+    const router = useRouter()
+
     const handleSubmit= () => {
       error.value = null
       if (password.value === confirmPassword.value){
@@ -56,7 +59,9 @@ export default {
           }),
           headers: myHeaders
         }
-        fetch('http://localhost:4040/utilisateur', options).then(response => console.log(response)).catch(err => {
+        fetch('http://localhost:4040/utilisateur', options).then(() => {
+          router.push("/")
+        }).catch(err => {
           error.value = "Confirmation incorrect, veuillez entrer deux fois le même mot de passe !"
           console.log(err)
         })
