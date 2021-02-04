@@ -3,7 +3,7 @@
         * Créer/modifier/supprimer fiche client (mayou) // DONE
         * Consulter liste des clients/ une fiche client par nom/identifiant (Mayou) // DONE
         * gestion des commandes (mayou) // TODO Récuperer contenu(articles) de la commande à afficher sur /commande  //gestion DONE
-        * génerer facture
+        * génerer facture pour une commande 
         * exporter la liste des commandes dans un fichier excel (mayou)
         * réaliser des opérations à la place d'un client ( julien )
         * ajouter/modifier/retirer cadeaux (mayou) //DONE

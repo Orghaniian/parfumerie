@@ -4,10 +4,8 @@
   <div v-if="!modif">
     <p v-if="client">{{ client }}</p>
     <p v-else>Chargement...</p>
-    <div v-if="adminBool">
       <button @click="modif = !modif">Modifier</button>
       <button @click="fonctionSupp()">Supprimer</button>
-    </div>
   </div>
 
 
@@ -53,8 +51,6 @@ export default {
     const codeClientModifie = ref(null)
     const router = useRouter()
 
-    const adminBool = ref(client.value.Admin)
-
     const handleSubmit = function () {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
@@ -88,7 +84,7 @@ export default {
     }
     
 
-    return {  handleSubmit, fonctionSupp, client, modif, codeClientModifie, adminBool }
+    return {  handleSubmit, fonctionSupp, client, modif, codeClientModifie }
   }
 }
 </script>

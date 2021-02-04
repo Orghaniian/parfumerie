@@ -10,7 +10,8 @@
         <button :disabled="article.Quantite_en_stock <= 0" @click.prevent="addCart">{{ article ? "Ajouter au panier" : "Chargement..." }}</button>
       </div>
       <div v-else>
-        <button @click="modif = !modif">Modifier</button>
+          <button @click="modif = !modif">Modifier</button>
+          <button @click="fonctionSupp()">Supprimer</button>
       </div>
     </div>
     <div v-else>
@@ -45,8 +46,6 @@
     </div>
   </div>
   <p v-else>Chargement...</p>
-  <button @click="modif = !modif">Modifier</button>
-  <button @click="fonctionSupp()">Supprimer</button>
   <p v-if="erreur">{{ erreur }}</p>
 
 

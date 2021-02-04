@@ -52,11 +52,11 @@ export default {
       try{
         //vérification solde
         let response = await fetch(`http://localhost:4040/client/${client.CodeClient}`)
-        const repsonseClient = await response.json()
-        if (repsonseClient.status !== 200)
-          throw new Error(`Erreur lors de la récupération des données du client n° ${client.CodeClient}: ${repsonseClient.message}`)
+        const responseClient = await response.json()
+        if (responseClient.status !== 200)
+          throw new Error(`Erreur lors de la récupération des données du client n° ${client.CodeClient}: ${responseClient.message}`)
 
-        if( repsonseClient.data.Points >=  total.value){
+        if( responseClient.data.Points >=  total.value){
           //ajout commande
           let myHeaders = new Headers();
           myHeaders.append("Content-Type", "application/json");
@@ -72,12 +72,33 @@ export default {
           }
           response = await fetch("http://localhost:4040/commande", options)
           const responseCommande = await response.json()
-          if (repsonseClient.status !== 200)
+          if (responseCommande.status !== 200)
             throw new Error(`Erreur lors de l'envoi de la commande: ${responseCommande.message}`)
 
           panier.value = []
           setCart(panier.value)
-          router.push("/")
+
+
+          //creation facture
+          options = {
+            method: "POST",
+              body: JSON.stringify({
+              date_facture: Date.now(),
+              commande_no_commande : responseCommande.No_commande
+            }),
+            headers: myHeaders
+          }
+  
+          response = await fetch("http://localhost:4040/facture", options)
+          const responseFacture = await response.json()
+          if (responseFacture.status !== 200)
+            throw new Error(`Erreur lors de l'envoi de la facture: ${responseFacture.message}`)
+
+          console.log("La facture a bien été créée",responseFacture)
+
+          router.push(`/facture/${responseFacture.no_facture}`)
+
+
         }else{
           error.value = "Vous n'avez pas suffisamment de points"
           console.log("erreur: ", error.value)

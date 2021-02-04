@@ -1,5 +1,5 @@
 <template>
-  Commande: {{ no }}
+  Commande: {{ id }}
   <div v-if="!modif">
     <p v-if="commande">{{ commande }}</p>
     <p v-else>Chargement...</p>
@@ -67,7 +67,7 @@ export default {
     onMounted(() => {
       fetch("http://localhost:4040/commande/" + props.id)
       .then((response) => { response.json().then((data) => {
-          commande.value = data.data[0]
+          commande.value = data.data
           document.title = `Commande - ${commande.value.No_commande}`
         });
       })
