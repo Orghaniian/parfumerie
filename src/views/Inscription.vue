@@ -12,7 +12,7 @@
     <label for="code">Code client: </label>
     <input type="text" required v-model="code" name="code" id="code" autocomplete="on">
     <div >{{ error }}</div>
-    <button>Se connecter</button>
+    <button>S'inscrire</button>
   </form>
   <h3>Déjà inscris ?</h3>
   <router-link :to="{ name: 'Connexion' }">Se connecter</router-link>
@@ -44,8 +44,22 @@ export default {
 
     const handleSubmit= () => {
       error.value = null
-      if (password.value !== confirmPassword.value){
-        //TODO route d'inscription dans l'api
+      if (password.value === confirmPassword.value){
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        const options = {
+          method: "POST",
+          body: JSON.stringify({
+            identifiant: login.value,
+            mot_de_passe: password.value,
+            code_client: code.value
+          }),
+          headers: myHeaders
+        }
+        fetch('http://localhost:4040/utilisateur', options).then(response => console.log(response)).catch(err => {
+          error.value = "Confirmation incorrect, veuillez entrer deux fois le même mot de passe !"
+          console.log(err)
+        })
       }else{
         error.value = "Confirmation incorrect, veuillez entrer deux fois le même mot de passe !"
       }
