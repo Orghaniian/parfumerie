@@ -5,7 +5,7 @@
   <br/>
 </div>
 <div v-else>
-<router-link :to="{ name: 'Ajouter' }">Ajouter un cadeau</router-link>
+  <router-link :to="{ name: 'Ajouter' }">Ajouter un cadeau</router-link>
   <br/>
   <br/>
   <router-link :to="{ name: 'Clients' }">Voir les clients</router-link>
@@ -29,7 +29,7 @@ export default {
 
     const admin = computed(() => isAdmin())
 
-    return (admin)
+    return {admin}
   },
 };
 </script>
