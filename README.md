@@ -1,15 +1,17 @@
 # TODO
+
+    image article (bdd et formulaire) 
     -Admin
         * Créer/modifier/supprimer fiche client (mayou) // DONE
         * Consulter liste des clients/ une fiche client par nom/identifiant (Mayou) // DONE
         * gestion des commandes (mayou) // DONE
-        * génerer facture pour une commande // TODO
-        * exporter la liste des commandes dans un fichier excel (mayou)
+        * génerer facture pour une commande // DONE
+        * exporter la liste des commandes dans un fichier excel (sheetjs) 
         * réaliser des opérations à la place d'un client ( julien )
         * ajouter/modifier/retirer cadeaux (mayou) //DONE
     - Client
         * Consulter son profil (julien) // TODO Consulter l'historique et l'état des commandes
-        * consulter les cadeaux (Julien) // DONE (ajouter plus de filtres ?)
+        * consulter les cadeaux (Julien) // DONE 
         * échanger cadeaux (Julien) // DONE
 
 # :cherry_blossom: parfumerie :cherry_blossom:

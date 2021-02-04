@@ -1,6 +1,19 @@
 <template>
-  Facture: {{ no }}
+  <h2>Facture: {{ no }} </h2>
     <p v-if="facture">{{ facture }}</p>
+    <br/>
+    <br/>
+     <div v-if="commande">
+         <h3>Commande</h3>
+      <p>Client: {{ commande.Code_client }}</p>
+      <p>Date: {{ commande.Date_commande}}</p>
+      <p>Prix total: {{ commande.Prix }}</p>
+      <p>Frais de livraison: {{ commande.Frais_livraison }}</p>
+      <p>Statut: {{ commande.Statut }}</p>
+      <div v-for="article in commande.articles" :key="article.No_article">
+        {{ article }}
+      </div>
+    </div>
     <p v-else>Chargement...</p>
 </template>
 
@@ -13,6 +26,7 @@ export default {
   setup (props) {
     document.title = `Facture`
     const facture = ref(null)
+    const commande= ref(null)
     
     console.log(props)
 
@@ -22,13 +36,21 @@ export default {
           facture.value = data.data
           document.title = `Facture - ${facture.value.no_facture}`
 
-          console.log(data)
+          console.log(facture.value, facture.value.Commande_No_commande)
+
+          fetch("http://localhost:4040/commande/"+facture.value.Commande_No_commande)
+          .then((response) => { response.json().then((data) => {
+            commande.value = data.data
+    console.log(data)
+            
+          });
+          })
         });
       })
     })
 
 
-    return { facture }
+    return { facture, commande }
   }
 }
 </script>
