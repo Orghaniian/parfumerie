@@ -1,7 +1,16 @@
 <template>
-  Commande: {{ no }}
+  Commande N°: {{ id }}
   <div v-if="!modif">
-    <p v-if="commande">{{ commande }}</p>
+    <div v-if="commande">
+      <p>Client: {{ commande.Code_client }}</p>
+      <p>Date: {{ commande.Date_commande}}</p>
+      <p>Prix total: {{ commande.Prix }}</p>
+      <p>Frais de livraison: {{ commande.Frais_livraison }}</p>
+      <p>Statut: {{ commande.Statut }}</p>
+      <div v-for="article in commande.articles" :key="article.No_article">
+        {{ article }}
+      </div>
+    </div>
     <p v-else>Chargement...</p>
     <button @click="modif = !modif">Modifier</button>
     <button @click="fonctionSupp()">Supprimer</button>
@@ -67,7 +76,8 @@ export default {
     onMounted(() => {
       fetch("http://localhost:4040/commande/" + props.id)
       .then((response) => { response.json().then((data) => {
-          commande.value = data.data[0]
+          commande.value = data.data
+        console.log(data.data)
           document.title = `Commande - ${commande.value.No_commande}`
         });
       })
