@@ -1,5 +1,5 @@
 <template>
-  <Card img-src="https://www.marionnaud.fr/medias/Eau-de-Parfum-101065090.jpg?context=bWFzdGVyfGZyb250L2V4dHJhem9vbXwxNDg2Nzl8aW1hZ2UvanBlZ3xmcm9udC9leHRyYXpvb20vaDEyL2g3OC8xMDE4ODg0NzIxODcxOC5qcGd8YmE1YTI3NDg4MGRkOTcxMWY0ZTFlNDk4YTU5MzM0OGY0ODhkYjg1NWEwZjRkMGQxODgwZDg0MzMxNWFmNjM5ZA">
+  <Card :img-src="article.image">
       <div class="desc">
         <div>
           <h3>{{ article.Nom }}</h3>

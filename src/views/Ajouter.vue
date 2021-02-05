@@ -24,6 +24,10 @@
       <label for="echangeable">Échangeable</label>
       <input type="checkbox" name="echangeable" id="echangeable" v-model="form.echangeable" />
     </div>
+    <div>
+      <label for="image">Image</label>
+      <input type="text" name="image" id="image" v-model="form.image" required/>
+    </div>
     <button type="submit">Ajouter</button>
   </form>
   <p v-if="idArticleAjoute">Article ajouté ! n°{{ idArticleAjoute }}</p>
@@ -41,7 +45,8 @@ export default {
         prix_unitaire: 0,
         disponible: false,
         en_cadeau: false,
-        echangeable: false
+        echangeable: false,
+        image: ""
     })
 
     const idArticleAjoute = ref(null)
@@ -64,7 +69,8 @@ export default {
             prix_unitaire: 0,
             disponible: false,
             en_cadeau: false,
-            echangeable: false
+            echangeable: false,
+            image:""
         }
     };
     return { handleSubmit, form, idArticleAjoute };

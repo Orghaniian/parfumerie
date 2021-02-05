@@ -40,6 +40,10 @@
           <label for="echangeable">Échangeable</label>
           <input type="checkbox" name="echangeable" id="echangeable" v-model="article.Echangeable" />
         </div>
+        <div>
+          <label for="image">Image</label>
+          <input type="text" name="image" id="image" v-model="form.image" required/>
+        </div>
         <button type="submit">Valider</button>
       </form>
       <p v-if="codeArticleModifie">Article modifié ! n°{{ codeArticleModifie }}</p>
