@@ -3,7 +3,7 @@
     <p v-if="facture">{{ facture }}</p>
     <br/>
     <br/>
-     <div v-if="commande">
+    <div v-if="commande">
          <h3>Commande</h3>
       <p>Client: {{ commande.Code_client }}</p>
       <p>Date: {{ commande.Date_commande}}</p>
@@ -34,18 +34,17 @@ export default {
       fetch("http://localhost:4040/facture/" + props.no)
       .then((response) => { response.json().then((data) => {
           facture.value = data.data
-          document.title = `Facture - ${facture.value.no_facture}`
+          document.title = `Facture - ${facture.value.No_facture}`
 
           fetch("http://localhost:4040/commande/"+facture.value.Commande_No_commande)
           .then((response) => { response.json().then((data) => {
             commande.value = data.data
-
-            
           });
           })
         });
       })
     })
+
 
 
     return { facture, commande }

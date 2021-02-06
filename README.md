@@ -8,7 +8,7 @@
         * Consulter liste des clients/ une fiche client par nom/identifiant (Mayou) // DONE
         * gestion des commandes (mayou) // DONE
         * génerer facture pour une commande // DONE
-        * exporter la liste des commandes dans un fichier excel (sheetjs) 
+        * exporter la liste des commandes dans un fichier excel (julien) //DONE même si pas beau 
         * réaliser des opérations à la place d'un client ( julien )
         * ajouter/modifier/retirer cadeaux (mayou) //DONE
     - Client
