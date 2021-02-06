@@ -83,7 +83,7 @@ export default {
           options = {
             method: "POST",
               body: JSON.stringify({
-              date_facture: Date.now(),
+              date_facture: new Date().toISOString().slice(0, 19).replace('T', ' '),
               commande_no_commande : responseCommande.No_commande
             }),
             headers: myHeaders
