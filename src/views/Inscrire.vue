@@ -20,7 +20,7 @@
       <label for="telephone">Telephone</label>
       <input type="text" name="telephone" id="telephone" v-model="form.telephone"/>
     </div>
-    <button type="submit">Inscrire</button>
+    <button class="btn" type="submit">Inscrire</button>
   </form>
   <p v-if="codeClientAjoute">Client inscrit ! n°{{ codeClientAjoute }}</p>
 </template>
@@ -67,4 +67,18 @@ export default {
 </script>
 
 <style>
+
+  .btn {
+    height: 35px;
+    padding: 4px 10px;
+    background: #FFFFFF;
+    border: 2px solid #483D8B;
+    border-radius: 20px;
+    text-decoration: none;
+    line-height: 23px;
+    justify-self: center;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+}
 </style>

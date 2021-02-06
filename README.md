@@ -1,6 +1,7 @@
 # TODO
 
-    image article (bdd et formulaire) 
+    image article (bdd et formulaire) //DONE
+    redirection après une validation de formulaire
     -Admin
         * Créer/modifier/supprimer fiche client (mayou) // DONE
         * Consulter liste des clients/ une fiche client par nom/identifiant (Mayou) // DONE

@@ -1,5 +1,5 @@
 <template>
-  <Card img-src="https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg">
+  <BigCard img-src="https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg">
     <div class="infos">
       <h3>{{ client.Nom ? client.Nom : "pas de Nom pas de cadeau!" }}</h3>
       <span>Code client:{{ client.Code_client }}</span>
@@ -11,17 +11,18 @@
       <p>Instagram: {{ client.Instagram }}</p>
       <div>
       <br/><br/>
+      <router-link class="btn" style="text-align: center" :to="{ name: 'Client', params: { id: client.Code_client } } ">Voir plus </router-link>
       </div>
     </div>
-  </Card>
+  </BigCard>
 
 </template>
 
 <script>
-import Card from "@/components/Card";
+import BigCard from "@/components/BigCard";
 export default {
-  name: "ClientItem",
-  components: {Card},
+  name: "ClientsItem",
+  components: {BigCard},
   props: {
     client: Object
   }

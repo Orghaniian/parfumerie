@@ -1,4 +1,10 @@
 <template>
+ <router-link class="btn" :to="{ name: 'Ajouter' }" v-if="admin">
+    Ajouter un nouvel article
+  </router-link>
+  <br/>
+  <br/>
+  <br/>
   <SearchBar @load="load" :select-options="{
     asc: 'prix croissant',
     desc: 'prix décroissant',
@@ -11,9 +17,7 @@
     <label for="enCadeau">Obtenable en cadeau</label>
     <input @change="load" type="checkbox" name="enCadeau" id="enCadeau" v-model="enCadeau">
   </SearchBar>
-  <router-link :to="{ name: 'Ajouter' }" v-if="admin">
-    Ajouter un nouvel article
-  </router-link>
+  
   <p>{{ articles.length }} Resultat(s) pour: {{ nomRef }}</p>
   <div class="card-container">
     <div v-for="article in articles" :key="article.id">
@@ -61,3 +65,19 @@ export default {
   },
 };
 </script>
+
+<style>
+.btn {
+    height: 35px;
+    padding: 4px 10px;
+    background: #FFFFFF;
+    border: 2px solid #483D8B;
+    border-radius: 20px;
+    text-decoration: none;
+    line-height: 23px;
+    justify-self: center;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+}
+</style>

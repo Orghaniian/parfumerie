@@ -2,10 +2,14 @@
   Client: {{ no }}
   {{ client }}
   <div v-if="!modif">
-    <p v-if="client">{{ client }}</p>
+    <div v-if="client">
+      <div class="card-container">
+          <ClientItem :client="client"/>
+      </div>
+    </div>
     <p v-else>Chargement...</p>
-      <button @click="modif = !modif">Modifier</button>
-      <button @click="fonctionSupp()">Supprimer</button>
+      <button class="btn" @click="modif = !modif">Modifier</button>
+      <button class="btn" @click="fonctionSupp()">Supprimer</button>
   </div>
 
 
@@ -31,7 +35,7 @@
       <label for="telephone">Telephone</label>
       <input type="text" name="telephone" id="telephone" v-model="client.Telephone" required/>
     </div>
-    <button type="submit">Valider</button>
+    <button class="btn" type="submit">Valider</button>
   </form>
   <p v-if="codeClientModifie">Client modifié ! n°{{ codeClientModifie }}</p>
   </div>
@@ -40,10 +44,12 @@
 <script>
 import {onMounted, ref} from "vue";
 import {useRouter} from "vue-router";
+import ClientItem from "@/components/ClientItem";
 
 export default {
   name: "Client",
   props: ["id"],
+  components: {ClientItem},
   setup (props) {
     document.title = `Client`
     const client = ref(null)
@@ -97,4 +103,18 @@ export default {
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
+
+  .btn {
+    height: 35px;
+    padding: 4px 10px;
+    background: #FFFFFF;
+    border: 2px solid #483D8B;
+    border-radius: 20px;
+    text-decoration: none;
+    line-height: 23px;
+    justify-self: center;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+}
 </style>

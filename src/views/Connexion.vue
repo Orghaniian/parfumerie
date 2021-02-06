@@ -6,10 +6,12 @@
     <label for="password">Mot de passe: </label>
     <input type="password" required v-model="password" name="password" id="password" autocomplete="on">
     <div >{{ error }}</div>
-    <button>Se connecter</button>
+    <button class="btn">Se connecter</button>
   </form>
+  <br/>
+  <br/>
   <h3>Pas encore inscris ?</h3>
-  <router-link :to="{ name: 'Inscription' }">S'inscrire</router-link>
+  <router-link  :to="{ name: 'Inscription' }">S'inscrire</router-link>
 </template>
 
 <script>
@@ -72,5 +74,19 @@ form{
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+  .btn {
+    height: 35px;
+    padding: 4px 10px;
+    background: #FFFFFF;
+    border: 2px solid #483D8B;
+    border-radius: 20px;
+    text-decoration: none;
+    line-height: 23px;
+    justify-self: center;
+    color: black;
+    cursor: pointer;
+    text-align: center;
 }
 </style>

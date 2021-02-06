@@ -1,17 +1,17 @@
 <template>
 <div v-if="!admin">
-  <router-link :to="{ name: 'Catalogue' }">Voir le catalogue</router-link>
+  <router-link class="btn" :to="{ name: 'Catalogue' }">Voir le catalogue</router-link>
   <br/>
   <br/>
 </div>
 <div v-else>
-  <router-link :to="{ name: 'Ajouter' }">Ajouter un cadeau</router-link>
+  <router-link class="btn" :to="{ name: 'Ajouter' }">Ajouter un cadeau</router-link>
   <br/>
   <br/>
-  <router-link :to="{ name: 'Clients' }">Voir les clients</router-link>
+  <router-link class="btn" :to="{ name: 'Clients' }">Voir les clients</router-link>
   <br/>
   <br/>
-  <router-link :to="{ name: 'Commandes' }">Voir les commandes</router-link>
+  <router-link class="btn" :to="{ name: 'Commandes' }">Voir les commandes</router-link>
   <br/>
   <br/>
 </div>
@@ -33,3 +33,20 @@ export default {
   },
 };
 </script>
+
+<style>
+
+  .btn {
+    height: 35px;
+    padding: 4px 10px;
+    background: #FFFFFF;
+    border: 2px solid #483D8B;
+    border-radius: 20px;
+    text-decoration: none;
+    line-height: 23px;
+    justify-self: center;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+}
+</style>

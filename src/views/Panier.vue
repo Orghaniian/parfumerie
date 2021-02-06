@@ -10,7 +10,7 @@
   </div>
   <p v-else>Le panier est vide <router-link :to="{ name: 'Catalogue' }">Voir le catalogue</router-link> </p>
   <div style="color: red">{{ error }}</div>
-  <button @click="passerCommande" class="btn" style="width: 180px;margin: auto">Passer la commande</button>
+  <button  @click="passerCommande" class="btn" style="width: 180px;margin: auto">Passer la commande</button>
 
 </template>
 
@@ -115,3 +115,19 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .btn {
+    height: 35px;
+    padding: 4px 10px;
+    background: #FFFFFF;
+    border: 2px solid #483D8B;
+    border-radius: 20px;
+    text-decoration: none;
+    line-height: 23px;
+    justify-self: center;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+}
+</style>

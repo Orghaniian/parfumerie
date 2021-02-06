@@ -12,8 +12,8 @@
       </div>
     </div>
     <p v-else>Chargement...</p>
-    <button @click="modif = !modif">Modifier</button>
-    <button @click="fonctionSupp()">Supprimer</button>
+    <button class="btn" @click="modif = !modif">Modifier</button>
+    <button class="btn" @click="fonctionSupp()">Supprimer</button>
   </div>
 
 
@@ -37,7 +37,7 @@
       <label for="codeclient">Code client</label>
       <input type="text" name="codeclient" id="codeclient" v-model="commande.Code_client" required/>
     </div>
-    <button type="submit">Valider</button>
+    <button class="btn" type="submit">Valider</button>
   </form>
   <p v-if="codeCommandeModifie">Commande modifié ! n°{{ codeCommandeModifie }}</p>
   </div>
@@ -101,4 +101,18 @@ export default {
     flex-wrap: wrap;
     justify-content: space-evenly;
   }
+
+  .btn {
+    height: 35px;
+    padding: 4px 10px;
+    background: #FFFFFF;
+    border: 2px solid #483D8B;
+    border-radius: 20px;
+    text-decoration: none;
+    line-height: 23px;
+    justify-self: center;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+}
 </style>

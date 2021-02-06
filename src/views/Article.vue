@@ -2,7 +2,11 @@
   Article: {{ no }}
   <div v-if="article">
     <div v-if="!modif">
-      <pre>{{ article }}</pre>
+      <div class="card-container">
+          <ArticleItem :article="article"/>
+      </div>
+      <br/>
+      <br/>
       <p v-if="article.Quantite_en_stock <= 0">Stock épuisé!</p>
       <div v-if="!admin">
         <label for="quantite">Quantité: </label>
@@ -10,8 +14,8 @@
         <button :disabled="article.Quantite_en_stock <= 0" @click.prevent="addCart">{{ article ? "Ajouter au panier" : "Chargement..." }}</button>
       </div>
       <div v-else>
-          <button @click="modif = !modif">Modifier</button>
-          <button @click="fonctionSupp()">Supprimer</button>
+          <button class="btn" @click="modif = !modif">Modifier</button>
+          <button class="btn" @click="fonctionSupp()">Supprimer</button>
       </div>
     </div>
     <div v-else>
@@ -44,7 +48,7 @@
           <label for="image">Image</label>
           <input type="text" name="image" id="image" v-model="form.image" required/>
         </div>
-        <button type="submit">Valider</button>
+        <button class="btn" type="submit">Valider</button>
       </form>
       <p v-if="codeArticleModifie">Article modifié ! n°{{ codeArticleModifie }}</p>
     </div>
@@ -57,6 +61,7 @@
 
 <script>
 import {computed, onMounted, ref} from "vue";
+import ArticleItem from "@/components/ArticleItem";
 import useCart from "@/utils/useCart";
 import isAdmin from "@/utils/isAdmin";
 import {useRouter} from "vue-router";
@@ -64,6 +69,7 @@ import {useRouter} from "vue-router";
 export default {
   name: "Article",
   props: ["no"],
+  components: {ArticleItem},
   setup (props) {
     console.log(props)
     document.title = `Article`
@@ -136,6 +142,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+
+.btn {
+    height: 35px;
+    padding: 4px 10px;
+    background: #FFFFFF;
+    border: 2px solid #483D8B;
+    border-radius: 20px;
+    text-decoration: none;
+    line-height: 23px;
+    justify-self: center;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+}
 
 </style>

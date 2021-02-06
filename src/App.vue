@@ -1,6 +1,5 @@
 <template>
   <Menu @logout="logout" :logged="logged"/>
-  <div>{{ utilisateur }}</div>
   <router-view @login="login"/>
 </template>
 

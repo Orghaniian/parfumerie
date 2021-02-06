@@ -1,30 +1,34 @@
 <template>
-  <Card>
+  <SmallCard>
     <div class="infos">
-      <h3>{{ commande.No_commande }}</h3>
+      <h4>Commande numéro : {{ commande.No_commande }}</h4>
       <p>Date: {{ commande.Date_commande }}</p>
-      <router-link class="btn" style="text-align: center" :to="{ name: 'Commande', params: { id: commande.No_commande } } ">Consulter</router-link>
+      <router-link class="btn" style="text-align: center" :to="{ name: 'Commande', params: { id: commande.No_commande } } ">Voir plus</router-link>
     </div>
-  </Card>
+  </SmallCard>
 
 </template>
 
 <script>
-import Card from "@/components/Card";
+import SmallCard from "@/components/SmallCard";
 export default {
   name: "CommandesItem",
-  components: {Card},
+  components: {SmallCard},
   props: {
     commande: Object
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 .infos{
   display: grid;
   font-size: 1.25em;
   height: 100%;
-  text-align: left;
+  text-align: center;
+}
+
+h4 {
+  font-weight: bold;
 }
 </style>

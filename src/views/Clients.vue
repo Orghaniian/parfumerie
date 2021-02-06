@@ -1,17 +1,17 @@
 <template>
 
-<router-link :to="{ name: 'Inscrire' }">Inscrire un client</router-link>
+<router-link class="btn" :to="{ name: 'Inscrire' }">Inscrire un client</router-link>
 
   <SearchBar @load="load" :select-options="{
-    asc: 'points croissant',
-    desc: 'points décroissant',
+    asc: 'code croissant',
+    desc: 'code decroissant',
     nom: 'nom'
   }"/>
 
   <p>{{ clients.length }} Resultat(s) pour: {{ nomRef }}</p>
   <div class="card-container">
     <div v-for="client in clients" :key="client.Code_client">
-      <ClientItem :client="client"/>
+      <ClientsItem :client="client"/>
     </div>
   </div>
 
@@ -19,11 +19,11 @@
 
 <script>
 import { onMounted, ref } from "vue";
-import ClientItem from "@/components/ClientItem";
+import ClientsItem from "@/components/ClientsItem";
 import SearchBar from "@/components/SearchBar";
 export default {
   name: "Clients",
-  components: {SearchBar, ClientItem},
+  components: {SearchBar, ClientsItem},
   setup() {
     document.title = `Clients`
     const clients = ref([]);

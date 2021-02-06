@@ -15,7 +15,7 @@
     <button>S'inscrire</button>
   </form>
   <h3>Déjà inscris ?</h3>
-  <router-link :to="{ name: 'Connexion' }">Se connecter</router-link>
+  <router-link class="btn" :to="{ name: 'Connexion' }">Se connecter</router-link>
 </template>
 
 <script>
@@ -81,5 +81,20 @@ form{
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+
+  .btn {
+    height: 35px;
+    padding: 4px 10px;
+    background: #FFFFFF;
+    border: 2px solid #483D8B;
+    border-radius: 20px;
+    text-decoration: none;
+    line-height: 23px;
+    justify-self: center;
+    color: black;
+    cursor: pointer;
+    text-align: center;
 }
 </style>
