@@ -36,12 +36,10 @@ export default {
           facture.value = data.data
           document.title = `Facture - ${facture.value.no_facture}`
 
-          console.log(facture.value, facture.value.Commande_No_commande)
-
           fetch("http://localhost:4040/commande/"+facture.value.Commande_No_commande)
           .then((response) => { response.json().then((data) => {
             commande.value = data.data
-    console.log(data)
+
             
           });
           })

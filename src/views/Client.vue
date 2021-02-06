@@ -70,7 +70,10 @@ export default {
             .then((reponse) => reponse.json().then((data) => {
               codeClientModifie.value = data.data
               document.title = `Client - ${client.value.Nom}`
+              modif.value =false
             }))
+
+      
     }
 
     onMounted(() => {
@@ -88,6 +91,7 @@ export default {
           router.push({name: "Clients"})
         })
     }
+    
     
 
     return {  handleSubmit, fonctionSupp, client, modif, codeClientModifie }

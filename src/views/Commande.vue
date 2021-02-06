@@ -70,6 +70,7 @@ export default {
             .then((reponse) => reponse.json().then((data) => {
               codeCommandeModifie.value = data.data
               document.title = `Commande - ${commande.value.No_commande}`
+              modif.value =false
             }))
     }
 

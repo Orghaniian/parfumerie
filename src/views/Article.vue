@@ -132,6 +132,7 @@ export default {
       fetch("http://localhost:4040/article/" + props.no, options)
           .then((reponse) => reponse.json().then((data) => {
             codeArticleModifie.value = data.data
+            modif.value =false
           }))
     }
 
