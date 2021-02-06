@@ -16,7 +16,7 @@ name: "BigCard",
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped >
 .card{
   display: grid;
   grid-template-columns: 1fr 1.2fr;

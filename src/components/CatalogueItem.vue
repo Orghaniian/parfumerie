@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .desc{
     display: grid;
     grid-template-rows: 1fr 20%;
