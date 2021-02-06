@@ -40,12 +40,6 @@ body {
   }
 }
 
-@media screen and (max-width: 1860px){
-  .card-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 @media screen and (max-width: 1400px){
   .card-container {
     grid-template-columns: repeat(2, 1fr);
@@ -59,7 +53,7 @@ body {
 }
 
 .btn{
-  height: 23px;
+  //height: 23px;
   padding: 4px 10px;
   background: #FFFFFF;
   border: 2px solid #483D8B;
