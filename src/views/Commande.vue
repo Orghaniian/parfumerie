@@ -8,7 +8,7 @@
       <p>Frais de livraison: {{ commande.Frais_livraison }}</p>
       <p>Statut: {{ commande.Statut }}</p>
       <div v-for="article in commande.articles" :key="article.No_article">
-        {{ article }}
+        <router-link :to="{name: 'Article', params: { no: article.No_article }}">{{ article }}</router-link>
       </div>
     </div>
     <p v-else>Chargement...</p>
