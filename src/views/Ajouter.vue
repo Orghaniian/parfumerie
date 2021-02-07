@@ -26,7 +26,7 @@
     </div>
     <div>
       <label for="image">Image</label>
-      <input type="text" name="image" id="image" v-model="form.image" required/>
+      <input type="text" name="image" id="image" v-model="form.image"/>
     </div>
     <button type="submit">Ajouter</button>
   </form>

@@ -46,7 +46,7 @@
         </div>
         <div>
           <label for="image">Image</label>
-          <input type="text" name="image" id="image" v-model="form.image" required/>
+          <input type="text" name="image" id="image" v-model="form.image"/>
         </div>
         <button class="btn" type="submit">Valider</button>
       </form>
@@ -56,6 +56,7 @@
   <p v-else>Chargement...</p>
   <p v-if="erreur">{{ erreur }}</p>
 
+  <p v-if="supp">L'article n'a pas été supprimé de la base de données car il a été commandé par le passé, il a cependant été déclaré indisponible</p>
 
 </template>
 
@@ -77,6 +78,7 @@ export default {
     const modif = ref (false)
     const codeArticleModifie = ref(null)
     const router = useRouter()
+    const supp = ref(false)
 
 
     onMounted(() => {
@@ -114,9 +116,12 @@ export default {
     }
 
     const fonctionSupp = function () {
-        fetch(`http://localhost:4040/article/${props.no}`, { method: "DELETE" }).then( () => {
+        fetch(`http://localhost:4040/article/${props.no}`, { method: "DELETE" }).then( ((data) => {
+          article.value = data.data
+          console.log(data.data)
+          supp.value = data.suppressed           
           router.push({name: "Catalogue"})
-        })
+        }))
     }
 
     const handleSubmit = function () {
@@ -138,7 +143,7 @@ export default {
 
     const admin = computed(() => isAdmin())
 
-    return { fonctionSupp, article, addCart, quantite, erreur, modif, handleSubmit, codeArticleModifie, admin}
+    return { fonctionSupp, article, addCart, quantite, erreur, modif, handleSubmit, codeArticleModifie, admin, supp}
   }
 }
 </script>
