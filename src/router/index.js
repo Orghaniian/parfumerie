@@ -15,6 +15,7 @@ import isAdmin from "@/utils/isAdmin";
 import Profil from "@/views/Profil";
 import Panier from "@/views/Panier";
 import Inscription from "@/views/Inscription";
+import ControleClient from "@/views/ControleClient";
 
 const requireAdmin = (to, from, next) => {
   if(!isAdmin())
@@ -128,6 +129,12 @@ const routes = [
     name: "Inscription",
     component: Inscription,
     beforeEnter: requireNoAuth
+  },
+  {
+    path: "/control-client",
+    name: "ControleClient",
+    component: ControleClient,
+    beforeEnter: requireAdmin
   }
 ]
 

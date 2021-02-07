@@ -8,7 +8,7 @@
       <br/>
       <br/>
       <p v-if="article.Quantite_en_stock <= 0">Stock épuisé!</p>
-      <div v-if="!admin">
+      <div v-if="controlled || !admin">
         <label for="quantite">Quantité: </label>
         <input type="number" min="0"  id="quantite" v-model="quantite"/>
         <button :disabled="article.Quantite_en_stock <= 0" @click.prevent="addCart">{{ article ? "Ajouter au panier" : "Chargement..." }}</button>
@@ -150,7 +150,13 @@ export default {
 
     const admin = computed(() => isAdmin())
 
-    return { fonctionSupp, article, addCart, quantite, erreur, modif, handleSubmit, codeArticleModifie, admin, supp}
+    const controlled = ref(null)
+    const user = JSON.parse(localStorage.getItem("utilisateur"))
+    if (user.Admin && user.CodeClient){
+      controlled.value = user.CodeClient
+    }
+
+    return { fonctionSupp, article, addCart, quantite, erreur, modif, handleSubmit, codeArticleModifie, admin, supp, controlled}
   }
 }
 </script>

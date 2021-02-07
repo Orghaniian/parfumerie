@@ -1,5 +1,6 @@
 <template>
-  <nav class="navbar">
+  <nav class="navbar" :style="controlled ? null : 'padding: 10px'">
+    <div class="controlled" v-if="controlled">vous controllez actuellement l'utilisateur n°{{ controlled }}</div>
     <ul>
       <li>
         <ul>
@@ -28,6 +29,48 @@
       </li>
       <li>
         <ul>
+          <li class="btn-menu">
+            <router-link :to="{name: 'ControleClient'}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40.276" height="47.224" viewBox="0 0 40.276 47.224">
+                <g id="Groupe_74" data-name="Groupe 74" transform="translate(-163.82 -34.851)">
+                  <g id="Groupe_68" data-name="Groupe 68">
+                    <path id="Tracé_227" data-name="Tracé 227" d="M199.67,58.959c-.8-.73-4.289,2.812-6.549,5.3S191,67.9,191.806,68.627s1.965.763,4.226-1.723S200.474,59.69,199.67,58.959Z"/>
+                    <path id="Tracé_228" data-name="Tracé 228" d="M196.326,46.128c-2.081-1.034-5.836-1.194-6.306-.246s2.52,2.644,4.6,3.678,2.931.5,3.4-.449S198.407,47.161,196.326,46.128Z"/>
+                  </g>
+                  <circle id="Ellipse_50" data-name="Ellipse 50" cx="0.434" cy="0.434" r="0.434" transform="translate(194.925 46.224)"/>
+                  <g id="Groupe_69" data-name="Groupe 69">
+                    <path id="Tracé_229" data-name="Tracé 229" d="M200.931,55.887c-.423-2.613-2.423-6.253-3.377-6.1s-.5,4.043-.078,6.656,1.29,3.077,2.245,2.923S201.353,58.5,200.931,55.887Z"/>
+                    <path id="Tracé_230" data-name="Tracé 230" d="M185.26,67.287c-2.628,0-5.432.767-5.432,3.47s1.363,11.318,5.432,11.318,5.432-8.615,5.432-11.318S187.888,67.287,185.26,67.287Z"/>
+                  </g>
+                  <rect id="Rectangle_37" data-name="Rectangle 37" width="0.496" height="10.668" transform="translate(195.111 36.09)"/>
+                  <circle id="Ellipse_51" data-name="Ellipse 51" cx="1.404" cy="1.404" r="1.404" transform="translate(183.621 65.305)"/>
+                  <path id="Tracé_231" data-name="Tracé 231" d="M185.26,52.582a4.828,4.828,0,0,0-4.758,4.9c0,2.7.689,8.819,4.758,8.819s4.758-6.116,4.758-8.819A4.828,4.828,0,0,0,185.26,52.582Z"/>
+                  <g id="Groupe_70" data-name="Groupe 70">
+                    <circle id="Ellipse_52" data-name="Ellipse 52" cx="1.817" cy="1.817" r="1.817" transform="translate(189.755 67.535)"/>
+                    <circle id="Ellipse_53" data-name="Ellipse 53" cx="1.569" cy="1.569" r="1.569" transform="translate(197.583 57.787)"/>
+                    <circle id="Ellipse_54" data-name="Ellipse 54" cx="1.569" cy="1.569" r="1.569" transform="translate(195.685 48.287)"/>
+                  </g>
+                  <g id="Groupe_71" data-name="Groupe 71">
+                    <path id="Tracé_232" data-name="Tracé 232" d="M175.543,70.243c3.218.967,4.2.342,4.509-.7s-.158-2.1-3.376-3.069-8.029-2.212-8.342-1.171S172.325,69.275,175.543,70.243Z"/>
+                    <path id="Tracé_233" data-name="Tracé 233" d="M164.675,56.014c.892.57,1.9.592,3.149-1.366s2.943-4.953,2.051-5.523-4.027,1.5-5.28,3.458S163.784,55.444,164.675,56.014Z"/>
+                  </g>
+                  <path id="Tracé_234" data-name="Tracé 234" d="M168.5,65.681c.9-.359,1.4-1.2.42-3.662s-2.6-6.025-3.494-5.666-.738,4.509.244,6.966S167.6,66.04,168.5,65.681Z"/>
+                  <g id="Groupe_72" data-name="Groupe 72">
+                    <circle id="Ellipse_55" data-name="Ellipse 55" cx="1.817" cy="1.817" r="1.817" transform="translate(178.809 68.229)"/>
+                    <circle id="Ellipse_56" data-name="Ellipse 56" cx="1.569" cy="1.569" r="1.569" transform="translate(167.413 63.809)"/>
+                    <circle id="Ellipse_57" data-name="Ellipse 57" cx="1.569" cy="1.569" r="1.569" transform="translate(164.15 54.688)"/>
+                  </g>
+                  <g id="Groupe_73" data-name="Groupe 73">
+                    <path id="Tracé_235" data-name="Tracé 235" d="M202.1,41.125h0a.248.248,0,0,1,.248.247l-3.074,17.774a.248.248,0,0,1-.248.248h0a.248.248,0,0,1-.248-.248l3.074-17.774A.248.248,0,0,1,202.1,41.125Z"/>
+                    <path id="Tracé_236" data-name="Tracé 236" d="M169.463,66.065h0a.249.249,0,0,1-.254-.242L172.438,38.7l.5-.012-3.229,27.126A.249.249,0,0,1,169.463,66.065Z"/>
+                  </g>
+                  <path id="Tracé_237" data-name="Tracé 237" d="M167.395,51.923l-.5,0,.957-5.425.5,0Z"/>
+                  <path id="Tracé_238" data-name="Tracé 238" d="M203.972,40.056,188.11,39l8.117-3.16L196.1,35.1,186.066,38.94l-14.685-.124-.062.712,9.046.837L165.123,46l.046.961,2.509.557,16.094-6.66L202.5,42.674l1.6-1.255Z"/>
+                  <path id="Tracé_239" data-name="Tracé 239" d="M186.623,38.94,196.1,35.1,194,34.851l-10.409,4.028-10.409-.867-1.8.805,9.542.929L165.123,46l2.54.5,16.048-6.506,18.635,1.379,1.626-1.317Z"/>
+                </g>
+              </svg>
+            </router-link>
+          </li>
           <li class="btn-menu">
             <router-link :to="{ name: 'Catalogue' }">
               <svg width="45" height="45" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">
@@ -70,7 +113,7 @@
       </li>
 
     </ul>
-    <div v-if="logged && !admin">
+    <div v-if="(logged && !admin) || controlled">
       <button  @click="toggleShowPanier">panier ({{ panier.length }})</button>
       <div v-if="showPanier">
         {{ panier }}
@@ -105,7 +148,14 @@ export default {
     const { panier } = useCart()
 
 
-    return { logout, admin, showPanier, toggleShowPanier, panier }
+    const controlled = ref(null)
+    const user = JSON.parse(localStorage.getItem("utilisateur"))
+    if (user.Admin && user.CodeClient){
+      controlled.value = user.CodeClient
+    }
+
+
+    return { logout, admin, showPanier, toggleShowPanier, panier, controlled }
   }
 };
 </script>
@@ -115,8 +165,18 @@ export default {
 @import "@/assets/variables.scss";
 
 .navbar {
-  padding: 10px;
   margin-bottom: 10px;
+
+  .controlled{
+    height: 26px;
+    font-size: 1.2em;
+    background-color: darkred;
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   svg {
     fill: $bgColor;
