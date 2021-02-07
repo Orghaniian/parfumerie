@@ -46,7 +46,7 @@
         </div>
         <div>
           <label for="image">Image</label>
-          <input type="text" name="image" id="image" v-model="form.image"/>
+          <input type="text" name="image" id="image" v-model="article.image"/>
         </div>
         <button class="btn" type="submit">Valider</button>
       </form>
@@ -54,7 +54,7 @@
     </div>
   </div>
   <p v-else>Chargement...</p>
-  <p v-if="erreur">{{ erreur }}</p>
+  <p v-if="erreur" style="color: red">{{ erreur }}</p>
 
   <p v-if="supp">L'article n'a pas été supprimé de la base de données car il a été commandé par le passé, il a cependant été déclaré indisponible</p>
 
@@ -116,15 +116,22 @@ export default {
     }
 
     const fonctionSupp = function () {
-        fetch(`http://localhost:4040/article/${props.no}`, { method: "DELETE" }).then( ((data) => {
-          article.value = data.data
-          console.log(data.data)
-          supp.value = data.suppressed           
-          router.push({name: "Catalogue"})
-        }))
-    }
+      erreur.value = null
+      fetch(`http://localhost:4040/article/${props.no}`, { method: "DELETE" }).then( response => {
+        console.log(response.body)
+       response.json().then( data => {
+         console.log(data)
 
+         if (!data.supressed)
+           erreur.value = "L'article étant référencé dans des commandes précedentes pour des raisons d'archivage il n'a pas été supprimé de la base de données mais juste mis indisponible"
+         else
+          router.push({name: "Catalogue"})
+       })
+      })
+    }
+    console.log(router)
     const handleSubmit = function () {
+      erreur.value = null
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
       const options = {

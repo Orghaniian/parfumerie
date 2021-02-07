@@ -30,7 +30,7 @@
     </div>
     <button type="submit">Ajouter</button>
   </form>
-  <p v-if="idArticleAjoute">Article ajouté ! n°{{ idArticleAjoute }}</p>
+  <router-link :to="{name: 'Article', params: { no: idArticleAjoute }}" v-if="idArticleAjoute">Article ajouté ! n°{{ idArticleAjoute }}</router-link>
 </template>
 
 <script>
