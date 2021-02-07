@@ -43,7 +43,7 @@ export default {
         nom: "",
         quantite_en_stock: 0,
         prix_unitaire: 0,
-        disponible: false,
+        disponible: true,
         en_cadeau: false,
         echangeable: false,
         image: ""

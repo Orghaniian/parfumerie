@@ -16,6 +16,10 @@
     <input @change="load" type="checkbox" name="echangeable" id="echangeable" v-model="echangeable">
     <label for="enCadeau">Obtenable en cadeau</label>
     <input @change="load" type="checkbox" name="enCadeau" id="enCadeau" v-model="enCadeau">
+    <div v-if="admin">
+      <label for="disponible">Disponibles</label>
+      <input @change="load" type="checkbox" name="disponible" id="disponible" v-model="disponible">
+    </div>
   </SearchBar>
   
   <p>{{ articles.length }} Resultat(s) pour: {{ nomRef }}</p>
@@ -40,6 +44,7 @@ export default {
     const enStock = ref(false)
     const echangeable = ref(false)
     const enCadeau = ref(false)
+    const disponible = ref(true)
 
     const load = function (e = {}) {
       const { tri, nom } = e
@@ -49,7 +54,9 @@ export default {
       if (enStock.value) query += `&stock=true`
       if (echangeable.value) query += `&echangeable=true`
       if (enCadeau.value) query += `&cadeau=true`
+      if (disponible.value) query += `&disponible=true`
       if (tri && tri !== "") query += `&orderBy=${tri}`
+      console.log(query, disponible.value)
       fetch(query).then((response) => {
         response.json().then((data) => (articles.value = data.data));
       });
@@ -61,7 +68,7 @@ export default {
 
     const admin = computed(() => isAdmin())    
 
-    return { articles, load, nomRef, enStock, echangeable, enCadeau, admin};
+    return { articles, load, nomRef, enStock, echangeable, enCadeau, admin, disponible};
   },
 };
 </script>
