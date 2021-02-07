@@ -150,7 +150,7 @@ export default {
 
     const controlled = ref(null)
     const user = JSON.parse(localStorage.getItem("utilisateur"))
-    if (user.Admin && user.CodeClient){
+    if (user && user.Admin && user.CodeClient){
       controlled.value = user.CodeClient
     }
 

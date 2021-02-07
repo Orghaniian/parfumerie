@@ -1,7 +1,4 @@
 <template>
-  {{ password }}
-  {{ confirmPassword }}
-  {{ password === confirmPassword}}
   <form @submit.prevent="handleSubmit">
     <label for="login">Login: </label>
     <input type="text" required v-model="login" name="login" id="login" autocomplete="on">
